@@ -1,0 +1,24 @@
+
+/* general  */
+body {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    max-width: 1440px;
+    
+}
+a {
+    text-decoration: none;
+}
+.menu_header {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-decoration: none;
+}
+.header{
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+}
