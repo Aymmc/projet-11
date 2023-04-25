@@ -35,7 +35,7 @@ add_filter('wp_nav_menu_items', 'add_search_form', 10, 2);
 
 function add_search_form2($items, $args) {
 	if($args->theme_location == 'header' ){
-	$items .= '<button id="myBtn" class="header" > Contact</button>'; 
+	$items .= '<button id="myBtn" class="contact header " > Contact</button>'; 
 	}
 	else{
 	}

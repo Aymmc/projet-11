@@ -14,7 +14,7 @@
 
         <div class="menu_header">
             <img src="wp-content\themes\motaphoto\asset\logo.png" alt="logo"> 
-            <?php wp_nav_menu(['theme_location' => 'header','container' => false,'menu_class' => 'header']) ?>
+            <?php wp_nav_menu(['theme_location' => 'header','container' => false,'menu_class' => 'header']) ?>      
         </div>
         
         <?php include_once "templates_parts/modale.php";?>
