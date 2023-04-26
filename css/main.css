@@ -100,11 +100,12 @@ footer {
 
 /* Modal Content */
 .modal-content {
+    width: 597px; /* Full width */
+    height: 769px;
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
+    border: 5px solid #000000;
 }
 
 /* The Close Button */
@@ -120,4 +121,55 @@ footer {
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+/* Formulaire de contact */
+.contact1{
+    display: flex;
+    justify-content: center;
+}
+.contact1_envoyer{
+    display: flex;
+    justify-content: center;
+}
+.wpcf7-form-control{
+    background-color: #fff;
+
+}
+/* Message  */
+.wpcf7-textarea{
+    height: 142px;
+width: 263px;
+border: 1px solid #000000;
+
+} 
+
+/* Non email et ref photo */
+.wpcf7-text{
+height: 40px;
+width: 263px;
+border: 1px solid #000000;
+}
+/* Bouton envoyé  */
+
+
+.wpcf7-submit{
+border-left: 4px black solid;
+border-top: none;
+border-right: none;
+border-bottom: none;
+height: 38px;
+width: 214px;
+font-family: Space Mono;
+font-size: 14px;
+font-weight: 400;
+line-height: 21px;
+letter-spacing: 0.1em;
+text-align: center;
+
+}
+/* backround_contact */
+.backround_contact{
+    background: url(Contact.png) repeat-x;
+    height: 48.048004150390625px;
+width: 279.9606628417969px;
 }
