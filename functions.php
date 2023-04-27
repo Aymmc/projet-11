@@ -1,4 +1,4 @@
-
+    
 <?php add_action( 'admin_init', function () {
     if ( ! isset( $_GET['updated'] ) ) {
         return;
