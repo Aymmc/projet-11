@@ -1,4 +1,4 @@
-<!-- signature wordpress -->
+
 <?php add_action( 'admin_init', function () {
     if ( ! isset( $_GET['updated'] ) ) {
         return;
@@ -10,7 +10,6 @@
 }, 100 );
 ?>
 
-<!-- Initialisation -->
 <?php
 function assets (){
     wp_enqueue_style( 'style', get_template_directory_uri() . '/css/main.css',array(),'1.0');
@@ -32,7 +31,6 @@ function montheme_supports(){
 add_action('after_setup_theme', 'montheme_supports');
  ?>
 
-<!-- Menu -->
 <?php
 function add_search_form($items, $args) {
 	if($args->theme_location == 'footer' ){
@@ -60,7 +58,6 @@ add_filter('wp_nav_menu_items', 'add_search_form2', 10, 2);
 <?php ini_set('zlib.output_compression', 'Off'); ?>
 
 
-<!-- Suppresion plugins -->
 <?php add_filter('admin_init', 'my_admin_init');
 function my_admin_init(){
     add_filter('admin_notices', 'my_admin_notices');
@@ -76,3 +73,5 @@ function my_admin_notices(){
     }
 }
 ?>
+
+
