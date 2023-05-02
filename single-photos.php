@@ -18,15 +18,16 @@ get_header(); ?>
                  -->
                 <!-- .entry-header -->
 
-                <div class="entry-content">
-                    <?php the_content(); ?>
-                </div><!-- .entry-content -->
-
                 <?php if ( get_the_post_thumbnail() ) : ?>
                     <div class="post-thumbnail">
                         <?php the_post_thumbnail(); ?>
                     </div><!-- .post-thumbnail -->
                 <?php endif; ?>
+
+                <div class="entry-content">
+                    <?php the_content(); ?>
+
+                </div><!-- .entry-content -->
 
             </article><!-- #post-<?php the_ID(); ?> -->
 

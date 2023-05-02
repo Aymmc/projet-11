@@ -9,7 +9,7 @@
     }
 }, 100 );
 ?>
-
+ 
 <?php
 function assets (){
     wp_enqueue_style( 'style', get_template_directory_uri() . '/css/main.css',array(),'1.0');
