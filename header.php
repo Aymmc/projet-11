@@ -13,7 +13,7 @@
     <header> 
 
         <div class="menu_header">
-            <img src="wp-content\themes\motaphoto\asset\logo.png" alt="logo"> 
+            <img src= "<?php echo get_stylesheet_directory_uri();?> '/asset/logo.png' " alt="logo"> 
             <?php wp_nav_menu(['theme_location' => 'header','container' => false,'menu_class' => 'header']) ?>      
         </div>
         
