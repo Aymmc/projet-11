@@ -216,5 +216,33 @@ text-align: left;
 #myBtn2{
     border-left: 4px black solid;
     padding-left: 19px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    margin-left: 10px;
 
+}
+
+.interesse {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.photo_choix{
+    display: flex;
+    margin-top: 2%;
+}
+.right , .left{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.btn_interesse {
+    display: flex;
+    align-items: center;
+}
+.section_interesse{
+    border-bottom: 1px black solid;
 }
