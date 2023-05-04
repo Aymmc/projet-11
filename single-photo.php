@@ -2,7 +2,7 @@
 
 /**
  * Template Name: Single
- * Template Post Type: post
+ * Template Post Type: photo
  */
 get_header() ?>
 
@@ -18,7 +18,7 @@ get_header() ?>
                         <h1 class="entry-title">
                             <?php the_title(); ?>
                         </h1>
-                        <p>REFERANCE :
+                        <p class="ref">REFERANCE :
                             <?php echo get_post_meta(get_the_ID(), 'reference', true); ?>
                         </p>
                         <p>CATÉGORIE :
@@ -35,12 +35,10 @@ get_header() ?>
                             echo $post_date; ?>
 
                     </div>
-                    <div class="post_separation">
-                    </div>
-                    <!-- .entry-header -->
+
                     <div class="post_image">
                         <?php if (has_post_thumbnail()): ?>
-                            <img src="<?php the_post_thumbnail_url(); ?>" alt="<?php the_title_attribute(); ?>"
+                            <img src="<?php the_post_thumbnail_url(array(500,500)); ?>" alt="<?php the_title_attribute(); ?>"
                                 class="post-thumbnail" />
                         <?php endif; ?>
                         <?php the_content(); ?>
@@ -75,8 +73,8 @@ get_header() ?>
                         </div>
                     </div>
                 </div>
-
             </section>
+            <?php include_once "templates_parts/photo_block.php"; ?>
         <?php endwhile; ?>
     </main>
 </div>

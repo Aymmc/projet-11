@@ -14,6 +14,26 @@ a {
     font-size: 16px;
 }
 
+h2 {
+    font-family: Space Mono;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 27px;
+    letter-spacing: 0.1em;
+
+}
+/* Animation */
+@keyframes bouton{
+    0%{
+        transform: translateX(0px);
+    }
+
+    100%{
+        transform: translateX(97px);
+    }
+}
+
+
 /* Menu Header */
 .menu_header {
     background-color: white;
@@ -39,7 +59,8 @@ a {
     gap: 40px;
     text-transform: uppercase;
 }
-.contact{
+
+.contact {
     background-color: #fff;
     border: none;
     margin-top: -1px;
@@ -85,22 +106,32 @@ footer {
 
 /* Overlay */
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
 }
 
 /* Modal Content */
 .modal-content {
-    width: 597px; /* Full width */
+    width: 597px;
+    /* Full width */
     height: 769px;
     background-color: #fefefe;
     margin: auto;
@@ -122,90 +153,106 @@ footer {
     text-decoration: none;
     cursor: pointer;
 }
+
 /* Formulaire de contact */
-.contact1{
+.contact1 {
     display: flex;
     justify-content: center;
 }
-.contact1_envoyer{
+
+.contact1_envoyer {
     display: flex;
     justify-content: center;
 }
-.wpcf7-form-control{
+
+.wpcf7-form-control {
     background-color: #fff;
 
 }
-/* Message  */
-.wpcf7-textarea{
-    height: 142px;
-width: 263px;
-border: 1px solid #000000;
 
-} 
+/* Message  */
+.wpcf7-textarea {
+    height: 142px;
+    width: 263px;
+    border: 1px solid #000000;
+
+}
 
 /* Nom email et ref photo */
-.wpcf7-text{
-height: 40px;
-width: 263px;
-border: 1px solid #000000;
+.wpcf7-text {
+    height: 40px;
+    width: 263px;
+    border: 1px solid #000000;
 }
+
 /* Bouton envoyé  */
 
 
-.wpcf7-submit{
-border-left: 4px black solid;
-border-top: none;
-border-right: none;
-border-bottom: none;
-height: 38px;
-width: 214px;
-font-family: Space Mono;
-font-size: 14px;
-font-weight: 400;
-line-height: 21px;
-letter-spacing: 0.1em;
-text-align: center;
+.wpcf7-submit {
+    border-left: 4px black solid;
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+    height: 38px;
+    width: 214px;
+    font-family: Space Mono;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: 0.1em;
+    text-align: center;
 
 }
+
 /* backround_contact */
-.backround_contact{
+.backround_contact {
     background: url(Contact.png)
 }
 
 /* Single_photo */
 
-.post_contant{
+.post_contant {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+
 }
 
-.post_contant h1 { 
+.post_contant h1 {
     font-family: Space Mono;
-font-size: 66px;
-font-style: italic;
-font-weight: 400;
-line-height: 58px;
-letter-spacing: 0em;
-text-align: left;
+    font-size: 66px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 58px;
+    letter-spacing: 0em;
+    text-align: left;
 }
+
 .post_contant p {
     font-family: Space Mono;
-font-size: 14px;
-font-weight: 400;
-line-height: 21px;
-letter-spacing: 0.1em;
-text-align: left;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: 0.1em;
+    text-align: left;
+}
+
+.post_image {
+    width: 40vw;
+
+    
 }
 
 .post_image img {
-    width: 34vmax;
-  height: 50vmax;
-  object-fit: contain;
+    object-fit: contain;
+    width: 100%;
+   min-height: 50%;
+   max-height: 80%;
 }
-.post_description{
+
+.post_description {
     padding-bottom: 2%;
-    border-bottom: #000 1px solid;
+    border-bottom: #000 1px solid; 
 }
 .post_separation{
     border-bottom: #000 1px solid;
@@ -213,26 +260,30 @@ text-align: left;
 
 /* Interesse */
 
-#myBtn2{
+#myBtn2 {
     border-left: 4px black solid;
     padding-left: 19px;
     padding-top: 7px;
     padding-bottom: 7px;
     margin-left: 10px;
-
+ transition: border-left 0.5s ease
 }
-
+#myBtn2:hover {
+  border-left: 100% solid black; /* Bordure de gauche pleinement remplie en noir */
+}
 .interesse {
     display: flex;
     justify-content: space-between;
 }
 
 
-.photo_choix{
+.photo_choix {
     display: flex;
     margin-top: 2%;
 }
-.right , .left{
+
+.right,
+.left {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -243,6 +294,81 @@ text-align: left;
     display: flex;
     align-items: center;
 }
-.section_interesse{
+
+.section_interesse {
     border-bottom: 1px black solid;
+}
+
+/* Vous aimeriez aussi */
+
+.photo_aimerezaussi {
+    width: 37vw;
+    height: 37vw;
+}
+
+.photo_aimerezaussi img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.photo_aleatoire {
+    display: flex;
+    justify-content: center;
+    gap: 1%;
+}
+
+
+
+
+/* Media Query */
+@media screen and (max-width: 520px) {
+    .post_contant{
+        display: flex;
+        flex-wrap: wrap-reverse;
+        /* flex-direction: column-reverse; */
+        justify-content: center;
+        
+    }
+    .photo_choix{
+        display: none;
+    }
+
+    .btn_interesse {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+    .photo_aleatoire{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .post_description p , .post_description h1 , .section_aimerezaussi h2 , .btn_interesse p{
+        text-align: center;
+    }
+    .modal-content{
+        width: 100vw;
+        margin: 0px;
+        padding: 0px;
+        height: none;
+    }
+    .menu_footer{
+
+    }
+    .btn_interesse p {
+    margin-left: 51px;
+}
+.photo_aimerezaussi img {
+    object-fit: cover;
+    width: 263px;
+    height: 231px;
+}
+.photo_aimerezaussi{
+    width:263px ;
+    height: 231px;
+}
+.post_image{
+    width: 75vw;
+}
 }
