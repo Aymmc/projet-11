@@ -6,6 +6,7 @@ body {
     max-width: 1440px;
     font-family: Space Mono;
     z-index: 1;
+
 }
 
 a {
@@ -22,6 +23,7 @@ h2 {
     letter-spacing: 0.1em;
 
 }
+
 /* Animation */
 @keyframes bouton{
     0%{
@@ -321,7 +323,7 @@ footer {
 
 
 
-/* Media Query */
+/* Media Query single_photo */
 @media screen and (max-width: 520px) {
     .post_contant{
         display: flex;
@@ -372,3 +374,15 @@ footer {
     width: 75vw;
 }
 }
+
+
+
+
+/* Page accueil */
+.accueil_aleatoire img {
+    /* background-image: url("<?php echo wp_get_attachment_url(get_post_thumbnail_id()); ?>"); */
+    background-size: cover;
+    background-position: center;
+    width: 75vw;
+    height: 103vh;
+  }
