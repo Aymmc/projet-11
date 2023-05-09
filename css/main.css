@@ -3,7 +3,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     padding: 0;
-    max-width: 1440px;
+   max-width: 1440px;
     font-family: Space Mono;
     z-index: 1;
 
@@ -379,10 +379,9 @@ footer {
 
 
 /* Page accueil */
+.accueil_aleatoire_photo{
+}
 .accueil_aleatoire img {
-    /* background-image: url("<?php echo wp_get_attachment_url(get_post_thumbnail_id()); ?>"); */
-    background-size: cover;
-    background-position: center;
-    width: 75vw;
-    height: 103vh;
+    width: 100%;
+
   }
