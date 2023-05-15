@@ -12,18 +12,18 @@
         rel="stylesheet">
     <?php wp_head() ?>
     <script>
-        $(document).ready(function() {
-    var maref = "<?php echo get_post_meta(get_the_ID(), 'reference', true); ?>";
-    $("#refphoto").val(maref);
-  });
-        </script>
+        $(document).ready(function () {
+            var maref = "<?php echo get_post_meta(get_the_ID(), 'reference', true); ?>";
+            $("#refphoto").val(maref);
+        });
+    </script>
 </head>
 
 <body>
     <header>
 
         <div class="menu_header">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?> '/asset/logo.png' " alt="logo">
+            <a href="http://localhost/motaphoto/"><img src="<?php echo get_stylesheet_directory_uri(); ?> '/asset/logo.png' " alt="logo"> </a>
             <?php wp_nav_menu(['theme_location' => 'header', 'container' => false, 'menu_class' => 'header']) ?>
         </div>
 

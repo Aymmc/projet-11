@@ -3,7 +3,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     padding: 0;
-   max-width: 1440px;
+    max-width: 1440px;
     font-family: Space Mono;
     z-index: 1;
 
@@ -25,12 +25,12 @@ h2 {
 }
 
 /* Animation */
-@keyframes bouton{
-    0%{
+@keyframes bouton {
+    0% {
         transform: translateX(0px);
     }
 
-    100%{
+    100% {
         transform: translateX(97px);
     }
 }
@@ -242,21 +242,22 @@ footer {
 .post_image {
     width: 40vw;
 
-    
+
 }
 
 .post_image img {
     object-fit: contain;
     width: 100%;
-   min-height: 50%;
-   max-height: 80%;
+    min-height: 50%;
+    max-height: 80%;
 }
 
 .post_description {
     padding-bottom: 2%;
-    border-bottom: #000 1px solid; 
+    border-bottom: #000 1px solid;
 }
-.post_separation{
+
+.post_separation {
     border-bottom: #000 1px solid;
 }
 
@@ -268,11 +269,14 @@ footer {
     padding-top: 7px;
     padding-bottom: 7px;
     margin-left: 10px;
- transition: border-left 0.5s ease
+    transition: border-left 0.5s ease
 }
+
 #myBtn2:hover {
-  border-left: 100% solid black; /* Bordure de gauche pleinement remplie en noir */
+    border-left: 100% solid black;
+    /* Bordure de gauche pleinement remplie en noir */
 }
+
 .interesse {
     display: flex;
     justify-content: space-between;
@@ -320,19 +324,45 @@ footer {
     gap: 1%;
 }
 
+/* toutephoto */
+.btn_toutephoto {
 
+    border-left: 4px black solid;
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+    height: 38px;
+    width: 214px;
+    font-family: Space Mono;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: 0.1em;
+    text-align: center;
+    background-color: white;
+}
 
+.btntoutephoto {
+    display: flex;
+    justify-content: center;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+.btntoutephoto a {
+    padding-top: 12px;
+}
 
 /* Media Query single_photo */
 @media screen and (max-width: 520px) {
-    .post_contant{
+    .post_contant {
         display: flex;
         flex-wrap: wrap-reverse;
         /* flex-direction: column-reverse; */
         justify-content: center;
-        
+
     }
-    .photo_choix{
+
+    .photo_choix {
         display: none;
     }
 
@@ -341,47 +371,110 @@ footer {
         align-items: center;
         flex-direction: column;
     }
-    .photo_aleatoire{
+
+    .photo_aleatoire {
         display: flex;
         flex-direction: column;
         align-items: center;
     }
-    .post_description p , .post_description h1 , .section_aimerezaussi h2 , .btn_interesse p{
+
+    .post_description p,
+    .post_description h1,
+    .section_aimerezaussi h2,
+    .btn_interesse p {
         text-align: center;
     }
-    .modal-content{
+
+    .modal-content {
         width: 100vw;
         margin: 0px;
         padding: 0px;
         height: none;
     }
-    .menu_footer{
 
-    }
+    .menu_footer {}
+
     .btn_interesse p {
-    margin-left: 51px;
-}
-.photo_aimerezaussi img {
-    object-fit: cover;
-    width: 263px;
-    height: 231px;
-}
-.photo_aimerezaussi{
-    width:263px ;
-    height: 231px;
-}
-.post_image{
-    width: 75vw;
-}
-}
+        margin-left: 51px;
+    }
 
+    .photo_aimerezaussi img {
+        object-fit: cover;
+        width: 263px;
+        height: 231px;
+    }
 
+    .photo_aimerezaussi {
+        width: 263px;
+        height: 231px;
+    }
 
+    .post_image {
+        width: 75vw;
+    }
+}
 
 /* Page accueil */
-.accueil_aleatoire_photo{
+.accueil_aleatoire_photo {
+    height: 103vh;
 }
+
 .accueil_aleatoire img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
-  }
+.photo_filtre {}
+
+.photo_toutephoto {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin: 30px 100px
+}
+
+.photo_unephoto img {
+
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.photo_unephoto {
+    height: 29vw;
+    width: 29vw;
+}
+
+
+
+#load-more {
+    border-radius: 2px;
+    background: #D8D8D8;
+    font-family: 'Space Mono';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    padding: 0.5%
+}
+
+.chargerplus {
+    display: flex;
+    justify-content: center;
+}
+
+@media screen and (max-width: 520px) {
+.accueil_aleatoire_photo {
+    height: 50vh;
+}
+.photo_unephoto {
+    height: 52vw;
+    width: 73vw;
+}
+.photo_toutephoto{
+gap: 8px;
+margin: 30px 47px;
+}
+}

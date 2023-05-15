@@ -76,6 +76,8 @@ get_header() ?>
             </section>
             <?php include_once "templates_parts/photo_block.php"; ?>
         <?php endwhile; ?>
+        <div class="btntoutephoto"> <a href="http://localhost/motaphoto/" class="btn btn_toutephoto"> Toutes les photos </a>
+                        </div>
     </main>
 </div>
 

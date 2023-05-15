@@ -19,6 +19,7 @@ add_action('wp_enqueue_scripts', 'assets');
 function script_modal()
 {
     wp_enqueue_script('modal', get_template_directory_uri() . '/js/script.js', array('jquery'), '1.0', true);
+    wp_enqueue_script('ajax', get_template_directory_uri() . '/js/ajax.js', array('jquery'), '1.0', true);
 }
 add_action('wp_enqueue_scripts', 'script_modal');
 function montheme_supports()
@@ -108,4 +109,29 @@ function wpb_rand_posts() {
     
     add_shortcode('wpb-random-posts','wpb_rand_posts');
     add_filter('widget-text', 'do_shortcode');
+
+    /* CHag */
+    function weichie_load_more() {
+        $ajaxposts = new WP_Query([
+          'post_type' => 'photo',
+          'posts_per_page' => 1,
+          'paged' => $_POST['paged'],
+        ]);
+      
+        $response = '';
+      
+        if($ajaxposts->have_posts()) {
+          while($ajaxposts->have_posts()) : $ajaxposts->the_post();
+            $response .= get_template_part('card', 'photo');
+          endwhile;
+        } else {
+          $response = '';
+        }
+      
+        echo $response;
+        exit;
+      }
+      add_action('wp_ajax_weichie_load_more', 'weichie_load_more');
+      add_action('wp_ajax_nopriv_weichie_load_more', 'weichie_load_more');
+    
 ?>
