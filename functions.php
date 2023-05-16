@@ -79,59 +79,109 @@ function my_admin_notices()
 }
 
 
-function wpb_rand_posts() { 
+function wpb_rand_posts()
+{
 
     $args = array(
         'post_type' => 'photo',
-        'orderby'   => 'rand',
-        'posts_per_page' => 1, 
-        );
-    
-    $the_query = new WP_Query( $args );
-    
-    if ( $the_query->have_posts() ) {
-    
-    $string .= '<ul>';
-        while ( $the_query->have_posts() ) {
+        'orderby' => 'rand',
+        'posts_per_page' => 1,
+    );
+
+    $the_query = new WP_Query($args);
+
+    if ($the_query->have_posts()) {
+
+        $string .= '<ul>';
+        while ($the_query->have_posts()) {
             $the_query->the_post();
-            $string .= '<li><a href="'. get_permalink() .'">'. get_the_title() .'</a></li>';
+            $string .= '<li><a href="' . get_permalink() . '">' . get_the_title() . '</a></li>';
         }
         $string .= '</ul>';
         /* Restore original Post Data */
         wp_reset_postdata();
     } else {
-    
-    $string .= 'aucun article disponible';
-    }
-    
-    return $string; 
-    } 
-    
-    add_shortcode('wpb-random-posts','wpb_rand_posts');
-    add_filter('widget-text', 'do_shortcode');
 
-    /* CHag */
-    function weichie_load_more() {
-        $ajaxposts = new WP_Query([
-          'post_type' => 'photo',
-          'posts_per_page' => 1,
-          'paged' => $_POST['paged'],
-        ]);
-      
-        $response = '';
-      
-        if($ajaxposts->have_posts()) {
-          while($ajaxposts->have_posts()) : $ajaxposts->the_post();
+        $string .= 'aucun article disponible';
+    }
+
+    return $string;
+}
+
+add_shortcode('wpb-random-posts', 'wpb_rand_posts');
+add_filter('widget-text', 'do_shortcode');
+
+/* CHag */
+function weichie_load_more()
+{
+    $ajaxposts = new WP_Query([
+        'post_type' => 'photo',
+        'posts_per_page' => 1,
+        'paged' => $_POST['paged'],
+    ]);
+
+    $response = '';
+
+    if ($ajaxposts->have_posts()) {
+        while ($ajaxposts->have_posts()):
+            $ajaxposts->the_post();
             $response .= get_template_part('card', 'photo');
-          endwhile;
-        } else {
-          $response = '';
+        endwhile;
+    } else {
+        $response = '';
+    }
+
+    echo $response;
+    exit;
+}
+add_action('wp_ajax_weichie_load_more', 'weichie_load_more');
+add_action('wp_ajax_nopriv_weichie_load_more', 'weichie_load_more');
+
+
+add_filter('pre_get_posts', 'custom_search_filter');
+
+function custom_search_filter($query)
+{
+
+    // Si on est entrain de faire une recherche
+    if ($query->is_search) {
+
+        switch ($_GET['search']) {
+
+            case 'mariage':
+                $query->set('post_type', 'mariage');
+                break;
+
+            case 'entreprise':
+                $query->set('post_type', 'entreprise');
+                break;
+
+            case 'anniversaire':
+                $query->set('post_type', 'anniversaire');
+                break;
+
+            case 'evenement':
+                $query->set('post_type', 'evenement');
+                break;
+
+            case 'portrait':
+                $query->set('post_type', 'portrait');
+                break;
+
+            case 'paysage':
+                $query->set('post_type', 'paysage');
+                break;
+
+            case '1/1':
+                $query->set('post_type', '1div1');
+                break;
+
+            case 'a4':
+                $query->set('post_type', 'a4');
+                break;
+
         }
-      
-        echo $response;
-        exit;
-      }
-      add_action('wp_ajax_weichie_load_more', 'weichie_load_more');
-      add_action('wp_ajax_nopriv_weichie_load_more', 'weichie_load_more');
-    
+    }
+    return $query;
+}
 ?>
