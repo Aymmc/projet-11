@@ -142,52 +142,45 @@ add_action('wp_ajax_nopriv_weichie_load_more', 'weichie_load_more');
 
 function filter_post()
 {
-    $query_args = array(
+    $cat = isset($_POST['categorie']) ? sanitize_text_field($_POST['categorie']) : '';
+    $args = array(
         'post_type' => 'photo',
-        'posts_per_page' => 10,
+        'posts_per_page' => 8,
         'paged' => 1,
         'tax_query' => array(
-            'relation' => 'AND',
+            array(
+                'taxonomy' => 'categorie',
+                'field' => 'slug',
+                'terms' => ($cat == -1 ? get_terms('categorie', array('fields' => 'slugs')) : $cat)
+            )
         ),
     );
 
-    // Ajouter le filtre de catégorie
-    if (isset($_POST['categorie']) && $_POST['categorie'] !== '') {
-        $query_args['tax_query'][] = array(
-            'taxonomy' => 'categorie',
-            'field' => 'term_id',
-            'terms' => $_POST['categorie'],
-        );
-    }
-
-    // Ajouter le filtre de format
-    if (isset($_POST['format']) && $_POST['format'] !== '') {
-        $query_args['tax_query'][] = array(
-            'taxonomy' => 'format',
-            'field' => 'term_id',
-            'terms' => $_POST['format'],
-        );
-    }
-
-    // Ajouter le filtre de date
-    if (isset($_POST['date']) && $_POST['date'] !== '') {
-        $query_args['tax_query'][] = array(
-            'taxonomy' => 'format_date',
-            'field' => 'term_id',
-            'terms' => $_POST['date'],
-        );
-    }
-
-    $ajaxfilter = new WP_Query($query_args);
-    $response = '';
+    $ajaxfilter = new WP_Query($args);
 
     if ($ajaxfilter->have_posts()) {
+        ob_start();
         while ($ajaxfilter->have_posts()) {
-            $ajaxfilter->the_post();
-            $response .= get_template_part('filtre', 'photo');
-        }
+            $ajaxfilter->the_post(); ?>
+            <div class="nouveau_block" data-category="<?php echo esc_attr(implode(',', wp_get_post_terms    (get_the_ID(), 'categorie', array('fields' => 'slugs')))); ?>">
+                    <div class="photo_newunephoto">
+                        <a href="<?php the_permalink(); ?>"><?php the_content(); ?></p>
+                            <?php if (has_post_thumbnail()): ?>
+                                <?php the_post_thumbnail(); ?>
+
+                        
+                            <?php endif; ?>
+                        </a>
+                    </div>
+            </div>      
+ 
+            
+        <?php }
+        wp_reset_query();
+        wp_reset_postdata();
+        $response = ob_get_clean();
     } else {
-        $response = '';
+        $response = '<p>Aucun article trouvé.</p>';
     }
 
     echo $response;
@@ -196,3 +189,5 @@ function filter_post()
 
 add_action('wp_ajax_filter_post', 'filter_post');
 add_action('wp_ajax_nopriv_filter_post', 'filter_post');
+
+?>

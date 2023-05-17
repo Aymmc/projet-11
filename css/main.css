@@ -434,15 +434,22 @@ footer {
     gap: 20px;
     margin: 30px 100px
 }
-
+.photo_newunephoto img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
 .photo_unephoto img {
 
     object-fit: cover;
     width: 100%;
     height: 100%;
 }
-
-.photo_unephoto {
+.photo_newunephoto {
+    height: 29vw;
+    width: 29vw;
+}
+.photo_unephoto  {
     height: 29vw;
     width: 29vw;
 }

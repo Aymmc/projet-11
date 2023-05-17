@@ -18,21 +18,30 @@ $('#load-more').on('click', function() {
 });
 console.log('test')
 
-jQuery('#cat1').on('change',function(){
-  
 
-    var categorie = jQuery('#cat1').val();
-  var data={
-    action: 'filter_post',
 
+
+
+
+
+
+
+jQuery('#cat1').on('change', function() {
+  var categorie = jQuery('#cat1').val();
+  var data = {
+      action: 'filter_post'
+  };
+
+  if (categorie) {
+      data.categorie = categorie;
   }
-    $.ajax({
+
+  jQuery.ajax({
       type: 'POST',
       url: '/motaphoto/wp-admin/admin-ajax.php',
       data: data,
       success: function(res) {
-        $('.photo_toutephoto').html(res);
+          $('.photo_toutephoto').html(res);
       }
-    });
   });
-
+});
