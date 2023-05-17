@@ -3,7 +3,7 @@
 $args = array(
     'post_type' => 'photo',
     'posts_per_page' => -1,
-    'taxonomy' => $_POST['categorie'],
+    'taxonomie' => 'categorie',
 );
 //On crée ensuite une instance de requête WP_Query basée sur les critères placés dans la variables $args
 $query = new WP_Query($args);

@@ -19,41 +19,62 @@ Template Name: Accueil
                 <img src="<?php the_post_thumbnail_url(); ?>" alt="<?php the_title_attribute(); ?>" <?php endwhile; endif; ?>
             </div>
 </section>
-<section>
-    <form class="js-filter-form-categorie" method="POST" action="/motaphoto/wp-admin/admin-ajax.php">
-        <select name="categories">
-            <?php
-            $cat_args = array(
-                'taxonomy' => 'categorie'
-            );
-            $categories = get_terms($cat_args);
+<?php
+// $categories = isset($_GET['categ']) ? $_GET['categ'] : '';
+// $format = isset($_GET['format']) ? $_GET['format'] : '';
 
-            foreach ($categories as $cat): ?>
+// $args = array(); // Initialise le tableau $args
 
-                <option class="js-filter_items" value="<?= $cat->term_id; ?>">
-                    <?= $cat->name; ?>
-                </option>
-            <?php endforeach; ?>
+// if ($categories != '' && $categories !== '-1') {
+//     $args['tax_query'][] = array(
+//         'taxonomy' => 'categorie',
+//         'field' => 'slug',
+//         'terms' => $categories
+//     );
+// }
 
-        </select>
-        <!-- <input type="submit" value="Filtrer" id="filtre"> -->
-    </form>
-    <form class="js-filter-form-format" method="post">
-        <select name="format">
-            <option value=''>
-            </option>
-            <?php
-            $cat_args = array(
-                'taxonomy' => 'format'
-            );
-            $categories = get_terms($cat_args);
-            foreach ($categories as $cat): ?>
-                <option class="js-filter_items" value="<?= $cat->term_id; ?>">
-                    <?= $cat->name; ?>
-                </option>
-            <?php endforeach; ?>
-        </select>
-    </form> 
+// if ($format != '' && $format !== '-1') {
+//     $args['tax_query'][] = array(
+//         'taxonomy' => 'format',
+//         'field' => 'term_id',
+//         'terms' => $format
+//     );
+// }
+// ?>
+
+
+<form class="js-filter-form" method="post">
+    <?php
+    $terms = get_terms('categorie');
+    $select = "<div class='filtre'> <select name='categ' id='cat1' class='postform'>";
+    $select .= "<option value='-1'>-- CATEGORIE --</option>";
+    foreach ($terms as $term) {
+        if ($term->count > 0) {
+            $select .= "<option value='" . $term->slug . "'>" . $term->name . "</option>";
+        }
+    }
+    $select .= "</select> </div>";
+    echo $select;
+    ?>
+
+    <!-- <?php
+    $terms = get_terms([
+        'taxonomy' => 'format',
+        'post_type' => 'photo',
+        'hide_empty' => false,
+    ]);
+    $select = "<select name='format' id='format1' class='postform'>";
+    $select .= "<option value='-1'>-- FORMAT --</option>";
+    foreach ($terms as $format) {
+        if ($format->count > 0) {
+            $selected = (isset($_POST['format']) && $_POST['format'] === $format->slug) ? 'selected' : '';
+            $select .= "<option value='" . $format->slug . "' $selected>" . $format->name . "</option>";
+        }
+    }
+    $select .= "</select>";
+    echo $select;
+    ?> -->
+</form>
     <div class="photo_toutephoto">
 
         <?php
