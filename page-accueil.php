@@ -20,10 +20,8 @@ Template Name: Accueil
             </div>
 </section>
 <section>
-    <form class="js-filter-form-categorie" method="GET" action="/motaphoto/wp-admin/admin-ajax.php">
+    <form class="js-filter-form-categorie" method="POST" action="/motaphoto/wp-admin/admin-ajax.php">
         <select name="categories">
-            <option value=''>
-            </option>
             <?php
             $cat_args = array(
                 'taxonomy' => 'categorie'
@@ -32,13 +30,13 @@ Template Name: Accueil
 
             foreach ($categories as $cat): ?>
 
-                <option class="js-filter_items" value="<?= $cat->terme_id; ?>">
+                <option class="js-filter_items" value="<?= $cat->term_id; ?>">
                     <?= $cat->name; ?>
                 </option>
             <?php endforeach; ?>
 
         </select>
-        <input type="submit" value="Filtrer" id="filtre">
+        <!-- <input type="submit" value="Filtrer" id="filtre"> -->
     </form>
     <form class="js-filter-form-format" method="post">
         <select name="format">
@@ -52,22 +50,6 @@ Template Name: Accueil
             foreach ($categories as $cat): ?>
                 <option class="js-filter_items" value="<?= $cat->term_id; ?>">
                     <?= $cat->name; ?>
-                </option>
-            <?php endforeach; ?>
-        </select>
-    </form>
-    <form class="js-filter-form-date" method="post">
-        <select name="date">
-            <option value=''> 
-            </option>
-            <?php
-            $date_args = array(
-                'taxonomy' => 'format_date'
-            );
-            $dates = get_terms($date_args);
-            foreach ($dates as $date): ?>
-                <option class="js-filter_items" value="<?= $date->term_id; ?>">
-                    <?= $date->name; ?>
                 </option>
             <?php endforeach; ?>
         </select>
@@ -85,7 +67,7 @@ Template Name: Accueil
         );
         //On crée ensuite une instance de requête WP_Query basée sur les critères placés dans la variables $args
         $query = new WP_Query($args);
-            if ($query->have_posts()):
+        if ($query->have_posts()):
             while ($query->have_posts()):
                 $query->the_post(); ?>
                 <div class="photo_unephoto">
@@ -96,7 +78,7 @@ Template Name: Accueil
                         </a>
                     </div>
                 <?php endif;
-                    endwhile; ?>
+            endwhile; ?>
 
 
         <?php else: ?>

@@ -139,35 +139,60 @@ add_action('wp_ajax_weichie_load_more', 'weichie_load_more');
 add_action('wp_ajax_nopriv_weichie_load_more', 'weichie_load_more');
 
 // Activation ajax natif wordpress
-add_action('wp_head', 'myplugin_ajaxurl');
-function myplugin_ajaxurl()
-{
-  echo '<script type="text/javascript">
-           var ajaxurl = "' . admin_url('admin-ajax.php') . '";
-         </script>';
-}
-
-// Ajout de l'action issu de ton javascript 
-add_action('wp_ajax_nom_de_ton_action', 'nom_de_ton_action');
-// Ajout de l'action issu de ton javascript nopriv (non connecté)
-add_action('wp_ajax_nopriv_nom_de_ton_action', 'nom_de_ton_action');
 
 function filter_post()
 {
-  $args = array(
-    'post_status' => "publish",
-    'post_type' => "photo",
-    // $_POST['parametre] est le paramètre que tu as envoyé depuis ton javascript, c'est lui le filtre
-    'category_name' => $_POST['parametre']
-  );
+    $query_args = array(
+        'post_type' => 'photo',
+        'posts_per_page' => 10,
+        'paged' => 1,
+        'tax_query' => array(
+            'relation' => 'AND',
+        ),
+    );
 
-  $ajax_query = new WP_Query($args);
+    // Ajouter le filtre de catégorie
+    if (isset($_POST['categorie']) && $_POST['categorie'] !== '') {
+        $query_args['tax_query'][] = array(
+            'taxonomy' => 'categorie',
+            'field' => 'term_id',
+            'terms' => $_POST['categorie'],
+        );
+    }
 
-  if ($ajax_query->have_posts()) {
-    while ($ajax_query->have_posts()) : $ajax_query->the_post();
-      get_the_content();
-    endwhile;
-  }
-  wp_reset_query();
-  die();
+    // Ajouter le filtre de format
+    if (isset($_POST['format']) && $_POST['format'] !== '') {
+        $query_args['tax_query'][] = array(
+            'taxonomy' => 'format',
+            'field' => 'term_id',
+            'terms' => $_POST['format'],
+        );
+    }
+
+    // Ajouter le filtre de date
+    if (isset($_POST['date']) && $_POST['date'] !== '') {
+        $query_args['tax_query'][] = array(
+            'taxonomy' => 'format_date',
+            'field' => 'term_id',
+            'terms' => $_POST['date'],
+        );
+    }
+
+    $ajaxfilter = new WP_Query($query_args);
+    $response = '';
+
+    if ($ajaxfilter->have_posts()) {
+        while ($ajaxfilter->have_posts()) {
+            $ajaxfilter->the_post();
+            $response .= get_template_part('filtre', 'photo');
+        }
+    } else {
+        $response = '';
+    }
+
+    echo $response;
+    exit;
 }
+
+add_action('wp_ajax_filter_post', 'filter_post');
+add_action('wp_ajax_nopriv_filter_post', 'filter_post');
