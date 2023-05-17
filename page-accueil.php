@@ -20,28 +20,58 @@ Template Name: Accueil
             </div>
 </section>
 <section>
-<form method="get" id="searchform" action="<?php echo esc_url( home_url( '/' ) ); ?>">
-    <div class="photo_filtre">
-        <select name="catégorie">
-            <option value='mariage'>Mariage</option>
-            <option value='entreprise'>Soirée entreprise</option>
-            <option value='anniversaire'>Anniversaire</option>
-            <option value='evenement'>Evénement</option>
+    <form class="js-filter-form-categorie" method="GET" action="/motaphoto/wp-admin/admin-ajax.php">
+        <select name="categories">
+            <option value=''>
+            </option>
+            <?php
+            $cat_args = array(
+                'taxonomy' => 'categorie'
+            );
+            $categories = get_terms($cat_args);
+
+            foreach ($categories as $cat): ?>
+
+                <option class="js-filter_items" value="<?= $cat->terme_id; ?>">
+                    <?= $cat->name; ?>
+                </option>
+            <?php endforeach; ?>
+
         </select>
+        <input type="submit" value="Filtrer" id="filtre">
+    </form>
+    <form class="js-filter-form-format" method="post">
         <select name="format">
-            <option value='portrait'>Portrait</option>
-            <option value='paysage'>Paysage</option>
-            <option value='1/1'>1/1</option>
-            <option value='a4'>A4</option>
+            <option value=''>
+            </option>
+            <?php
+            $cat_args = array(
+                'taxonomy' => 'format'
+            );
+            $categories = get_terms($cat_args);
+            foreach ($categories as $cat): ?>
+                <option class="js-filter_items" value="<?= $cat->term_id; ?>">
+                    <?= $cat->name; ?>
+                </option>
+            <?php endforeach; ?>
         </select>
-        <select name="orderby">
-            <option value='date'>Nouveautés</option>
-            <option value='date_created'>Les plus anciens</option>
+    </form>
+    <form class="js-filter-form-date" method="post">
+        <select name="date">
+            <option value=''> 
+            </option>
+            <?php
+            $date_args = array(
+                'taxonomy' => 'format_date'
+            );
+            $dates = get_terms($date_args);
+            foreach ($dates as $date): ?>
+                <option class="js-filter_items" value="<?= $date->term_id; ?>">
+                    <?= $date->name; ?>
+                </option>
+            <?php endforeach; ?>
         </select>
-        <input type="hidden" name="post_type" value="photo" />
-        <input type="submit" value="Filtrer" />
-    </div>
-</form>
+    </form> 
     <div class="photo_toutephoto">
 
         <?php
@@ -55,13 +85,9 @@ Template Name: Accueil
         );
         //On crée ensuite une instance de requête WP_Query basée sur les critères placés dans la variables $args
         $query = new WP_Query($args);
-        ?>
-
-        <?php if ($query->have_posts()): ?>
-
-
-            <?php while ($query->have_posts()): ?>
-                <?php $query->the_post(); ?>
+            if ($query->have_posts()):
+            while ($query->have_posts()):
+                $query->the_post(); ?>
                 <div class="photo_unephoto">
                     <a href="<?php the_permalink(); ?>"><?php the_content(); ?></p>
                         <?php if (has_post_thumbnail()): ?>
@@ -69,8 +95,8 @@ Template Name: Accueil
 
                         </a>
                     </div>
-                <?php endif; ?>
-            <?php endwhile; ?>
+                <?php endif;
+                    endwhile; ?>
 
 
         <?php else: ?>

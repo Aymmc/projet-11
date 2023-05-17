@@ -1,8 +1,8 @@
-console.log('ok');
+// console.log('ok');
 // Get the modal
 
 var modal = document.getElementById('myModal');
-console.log(modal)
+// console.log(modal)
 // Get the button that opens the modal
 var btn = document.getElementById("myBtn");
 var btn2 = document.getElementById("myBtn2");

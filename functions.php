@@ -20,6 +20,7 @@ function script_modal()
 {
     wp_enqueue_script('modal', get_template_directory_uri() . '/js/script.js', array('jquery'), '1.0', true);
     wp_enqueue_script('ajax', get_template_directory_uri() . '/js/ajax.js', array('jquery'), '1.0', true);
+    wp_enqueue_script('ajaxfiltre', get_template_directory_uri() . '/js/ajaxfiltre.js', array('jquery'), '1.0', true);
 }
 add_action('wp_enqueue_scripts', 'script_modal');
 function montheme_supports()
@@ -137,51 +138,36 @@ function weichie_load_more()
 add_action('wp_ajax_weichie_load_more', 'weichie_load_more');
 add_action('wp_ajax_nopriv_weichie_load_more', 'weichie_load_more');
 
-
-add_filter('pre_get_posts', 'custom_search_filter');
-
-function custom_search_filter($query)
+// Activation ajax natif wordpress
+add_action('wp_head', 'myplugin_ajaxurl');
+function myplugin_ajaxurl()
 {
-
-    // Si on est entrain de faire une recherche
-    if ($query->is_search) {
-
-        switch ($_GET['search']) {
-
-            case 'mariage':
-                $query->set('post_type', 'mariage');
-                break;
-
-            case 'entreprise':
-                $query->set('post_type', 'entreprise');
-                break;
-
-            case 'anniversaire':
-                $query->set('post_type', 'anniversaire');
-                break;
-
-            case 'evenement':
-                $query->set('post_type', 'evenement');
-                break;
-
-            case 'portrait':
-                $query->set('post_type', 'portrait');
-                break;
-
-            case 'paysage':
-                $query->set('post_type', 'paysage');
-                break;
-
-            case '1/1':
-                $query->set('post_type', '1div1');
-                break;
-
-            case 'a4':
-                $query->set('post_type', 'a4');
-                break;
-
-        }
-    }
-    return $query;
+  echo '<script type="text/javascript">
+           var ajaxurl = "' . admin_url('admin-ajax.php') . '";
+         </script>';
 }
-?>
+
+// Ajout de l'action issu de ton javascript 
+add_action('wp_ajax_nom_de_ton_action', 'nom_de_ton_action');
+// Ajout de l'action issu de ton javascript nopriv (non connecté)
+add_action('wp_ajax_nopriv_nom_de_ton_action', 'nom_de_ton_action');
+
+function filter_post()
+{
+  $args = array(
+    'post_status' => "publish",
+    'post_type' => "photo",
+    // $_POST['parametre] est le paramètre que tu as envoyé depuis ton javascript, c'est lui le filtre
+    'category_name' => $_POST['parametre']
+  );
+
+  $ajax_query = new WP_Query($args);
+
+  if ($ajax_query->have_posts()) {
+    while ($ajax_query->have_posts()) : $ajax_query->the_post();
+      get_the_content();
+    endwhile;
+  }
+  wp_reset_query();
+  die();
+}

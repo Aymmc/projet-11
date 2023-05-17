@@ -1,4 +1,4 @@
-console.log('zbi');
+// console.log('zbi');
 let currentPage = 1;
 $('#load-more').on('click', function() {
   currentPage++; // Do currentPage + 1, because we want to load the next page
@@ -16,3 +16,4 @@ $('#load-more').on('click', function() {
     }
   });
 });
+
