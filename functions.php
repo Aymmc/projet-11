@@ -113,81 +113,70 @@ add_shortcode('wpb-random-posts', 'wpb_rand_posts');
 add_filter('widget-text', 'do_shortcode');
 
 /* CHag */
-function weichie_load_more()
-{
-    $ajaxposts = new WP_Query([
-        'post_type' => 'photo',
-        'posts_per_page' => 1,
-        'paged' => $_POST['paged'],
-    ]);
 
-    $response = '';
 
-    if ($ajaxposts->have_posts()) {
-        while ($ajaxposts->have_posts()):
-            $ajaxposts->the_post();
-            $response .= get_template_part('card', 'photo');
-        endwhile;
-    } else {
-        $response = '';
-    }
-
-    echo $response;
-    exit;
-}
-add_action('wp_ajax_weichie_load_more', 'weichie_load_more');
-add_action('wp_ajax_nopriv_weichie_load_more', 'weichie_load_more');
-
-// Activation ajax natif wordpress
 
 function filter_post()
 {
+    // Récupère les catégories sélectionnées depuis la requête POST
     $cat = isset($_POST['categorie']) ? sanitize_text_field($_POST['categorie']) : '';
+    $cat2 = isset($_POST['format']) ? sanitize_text_field($_POST['format']) : '';
+
+    // Définit les arguments de la requête WP_Query
     $args = array(
-        'post_type' => 'photo',
-        'posts_per_page' => 8,
-        'paged' => 1,
-        'tax_query' => array(
+        'post_type' => 'photo', // Type de publication : "photo"
+        'posts_per_page' => 8, // Nombre de publications à afficher par page
+        'paged' => 1, // Numéro de page
+        'tax_query' => array( // Requête de taxonomie pour filtrer par catégorie
+            'relation' => 'OR', // Relation logique : OR (soit l'une des conditions doit être vérifiée)
             array(
-                'taxonomy' => 'categorie',
-                'field' => 'slug',
-                'terms' => ($cat == -1 ? get_terms('categorie', array('fields' => 'slugs')) : $cat)
+                'taxonomy' => 'categorie', // Taxonomie : "categorie"
+                'field' => 'slug', // Champ utilisé pour la correspondance : slug
+                'terms' => ($cat == -1 ? get_terms('categorie', array('fields' => 'slugs')) : $cat) // Termes de la catégorie à filtrer
+            ),
+            array(
+                'taxonomy' => 'format', // Taxonomie : "format"
+                'field' => 'slug', // Champ utilisé pour la correspondance : slug
+                'terms' => ($cat2 == -1 ? get_terms('format', array('fields' => 'slugs')) : $cat2) // Termes du format à filtrer
             )
-        ),
+        )
     );
 
+    // Effectue la requête WP_Query avec les arguments définis
     $ajaxfilter = new WP_Query($args);
 
+    // Vérifie si des publications ont été trouvées
     if ($ajaxfilter->have_posts()) {
-        ob_start();
-        while ($ajaxfilter->have_posts()) {
-            $ajaxfilter->the_post(); ?>
-            <div class="nouveau_block" data-category="<?php echo esc_attr(implode(',', wp_get_post_terms    (get_the_ID(), 'categorie', array('fields' => 'slugs')))); ?>">
-                    <div class="photo_newunephoto">
-                        <a href="<?php the_permalink(); ?>"><?php the_content(); ?></p>
-                            <?php if (has_post_thumbnail()): ?>
-                                <?php the_post_thumbnail(); ?>
+        ob_start(); // Démarre la mise en mémoire tampon
 
-                        
-                            <?php endif; ?>
-                        </a>
-                    </div>
-            </div>      
- 
-            
-        <?php }
-        wp_reset_query();
-        wp_reset_postdata();
-        $response = ob_get_clean();
+        // Boucle while pour parcourir les publications
+        while ($ajaxfilter->have_posts()) {
+            $ajaxfilter->the_post();
+
+            // Affiche le code HTML de chaque publication
+            ?>
+            <div class="nouveau_block" data-category="<?php echo esc_attr(implode(',', wp_get_post_terms(get_the_ID(), 'categorie,format', array('fields' => 'slugs')))); ?>">
+                <div class="photo_newunephoto">
+                    <a href="<?php the_permalink(); ?>"><?php the_content(); ?></a>
+                    <?php if (has_post_thumbnail()): ?>
+                        <?php the_post_thumbnail(); ?>
+                    <?php endif; ?>
+                </div>
+            </div>
+            <?php
+        }
+
+        wp_reset_query(); // Réinitialise la requête
+        wp_reset_postdata(); // Réinitialise les données de publication
+
+        $response = ob_get_clean(); // Récupère le contenu de la mise en mémoire tampon
     } else {
-        $response = '<p>Aucun article trouvé.</p>';
+        $response = '<p>Aucun article trouvé.</p>'; // Aucune publication trouvée
     }
 
-    echo $response;
-    exit;
+    echo $response; // Affiche la réponse
+    exit; // Termine la fonction
 }
 
 add_action('wp_ajax_filter_post', 'filter_post');
 add_action('wp_ajax_nopriv_filter_post', 'filter_post');
-
-?>

@@ -24,7 +24,7 @@ console.log('test')
 
 
 
-
+// Filtre Catégorie 
 
 jQuery('#cat1').on('change', function() {
   var categorie = jQuery('#cat1').val();
@@ -34,6 +34,27 @@ jQuery('#cat1').on('change', function() {
 
   if (categorie) {
       data.categorie = categorie;
+  }
+
+  jQuery.ajax({
+      type: 'POST',
+      url: '/motaphoto/wp-admin/admin-ajax.php',
+      data: data,
+      success: function(res) {
+          $('.photo_toutephoto').html(res);
+      }
+  });
+});
+
+// Filtre format 
+jQuery('#format1').on('change', function() {
+  var format = jQuery('#format1').val();
+  var data = {
+      action: 'filter_post'
+  };
+
+  if (format) {
+      data.format = format;
   }
 
   jQuery.ajax({

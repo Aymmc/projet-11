@@ -41,13 +41,14 @@ Template Name: Accueil
 //     );
 // }
 // ?>
-
-
+<div class="filtre">
+    <div class ="filtre_categ">
+<label for="categorie">CATEGORIES</label>
 <form class="js-filter-form" method="post">
     <?php
     $terms = get_terms('categorie');
     $select = "<div class='filtre'><select name='categorie' id='cat1' class='postform'>";
-    $select .= "<option value='-1'>-- CATEGORIE --</option>";
+    $select .= "<option value='-1'></option>";
     foreach ($terms as $term) {
         if ($term->count > 0) {
             $select .= "<option value='" . $term->slug . "'>" . $term->name . "</option>";
@@ -56,25 +57,27 @@ Template Name: Accueil
     $select .= "</select></div>";
     echo $select;
     ?>
-
-    <!-- <?php
-    $terms = get_terms([
-        'taxonomy' => 'format',
-        'post_type' => 'photo',
-        'hide_empty' => false,
-    ]);
-    $select = "<select name='format' id='format1' class='postform'>";
-    $select .= "<option value='-1'>-- FORMAT --</option>";
-    foreach ($terms as $format) {
-        if ($format->count > 0) {
-            $selected = (isset($_POST['format']) && $_POST['format'] === $format->slug) ? 'selected' : '';
-            $select .= "<option value='" . $format->slug . "' $selected>" . $format->name . "</option>";
+</form>
+</div>
+<div class="filtre_form">
+<label for="format">FORMAT</label>
+<form class="js-filter-form" method="post">
+    <?php
+    $terms = get_terms('format');
+    $select = "<div class='filtre'><select name='format' id='format1' class='postform'>";
+    $select .= "<option value='-1'></option>";
+    foreach ($terms as $term) {
+        if ($term->count > 0) {
+            $select .= "<option value='" . $term->slug . "'>" . $term->name . "</option>";
         }
     }
-    $select .= "</select>";
+    $select .= "</select></div>";
     echo $select;
-    ?> -->
+    ?>
 </form>
+</div>
+</div>
+
 <div class="photo_toutephoto">
 
     <?php

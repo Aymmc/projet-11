@@ -476,12 +476,19 @@ footer {
 .accueil_aleatoire_photo {
     height: 50vh;
 }
-.photo_unephoto {
+.photo_unephoto 
+.photo_newunephoto
+ {
     height: 52vw;
     width: 73vw;
 }
-.photo_toutephoto{
+.photo_toutephoto .nouveau_block{
 gap: 8px;
 margin: 30px 47px;
 }
+}
+
+
+.filtre {
+    display: flex;
 }
