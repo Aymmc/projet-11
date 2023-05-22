@@ -79,6 +79,31 @@ function my_admin_notices()
     }
 }
 
+/* CHag */
+function weichie_load_more()
+{
+    $ajaxposts = new WP_Query([
+        'post_type' => 'photo',
+        'posts_per_page' => 1,
+        'paged' => $_POST['paged'],
+    ]);
+
+    $response = '';
+
+    if ($ajaxposts->have_posts()) {
+        while ($ajaxposts->have_posts()):
+            $ajaxposts->the_post();
+            $response .= get_template_part('card', 'photo');
+        endwhile;
+    } else {
+        $response = '';
+    }
+
+    echo $response;
+    exit;
+}
+add_action('wp_ajax_weichie_load_more', 'weichie_load_more');
+add_action('wp_ajax_nopriv_weichie_load_more', 'weichie_load_more');
 
 function wpb_rand_posts()
 {
@@ -120,7 +145,7 @@ function filter_post()
 {
     // Récupère les catégories sélectionnées depuis la requête POST
     $cat = isset($_POST['categorie']) ? sanitize_text_field($_POST['categorie']) : '';
-    $cat2 = isset($_POST['format']) ? sanitize_text_field($_POST['format']) : '';
+    $format = isset($_POST['format']) ? sanitize_text_field($_POST['format']) : '';
 
     // Définit les arguments de la requête WP_Query
     $args = array(
@@ -128,7 +153,6 @@ function filter_post()
         'posts_per_page' => 8, // Nombre de publications à afficher par page
         'paged' => 1, // Numéro de page
         'tax_query' => array( // Requête de taxonomie pour filtrer par catégorie
-            'relation' => 'OR', // Relation logique : OR (soit l'une des conditions doit être vérifiée)
             array(
                 'taxonomy' => 'categorie', // Taxonomie : "categorie"
                 'field' => 'slug', // Champ utilisé pour la correspondance : slug
@@ -137,7 +161,7 @@ function filter_post()
             array(
                 'taxonomy' => 'format', // Taxonomie : "format"
                 'field' => 'slug', // Champ utilisé pour la correspondance : slug
-                'terms' => ($cat2 == -1 ? get_terms('format', array('fields' => 'slugs')) : $cat2) // Termes du format à filtrer
+                'terms' => ($format == -1 ? get_terms('format', array('fields' => 'slugs')) : $format) // Termes du format à filtrer
             )
         )
     );
@@ -155,11 +179,11 @@ function filter_post()
 
             // Affiche le code HTML de chaque publication
             ?>
-            <div class="nouveau_block" data-category="<?php echo esc_attr(implode(',', wp_get_post_terms(get_the_ID(), 'categorie,format', array('fields' => 'slugs')))); ?>">
+            <div class="nouveau_block" data-category="<?php echo esc_attr(implode(',', wp_get_post_terms(get_the_ID(), 'categorie', array('fields' => 'slugs')))); ?>"data-format="<?php echo esc_attr(implode(',', wp_get_post_terms(get_the_ID(), 'format', array('fields' => 'slugs')))); ?>">
                 <div class="photo_newunephoto">
-                    <a href="<?php the_permalink(); ?>"><?php the_content(); ?></a>
+                    <a href="<?php the_permalink(); ?>"><?php the_content(); ?>
                     <?php if (has_post_thumbnail()): ?>
-                        <?php the_post_thumbnail(); ?>
+                        <?php the_post_thumbnail(); ?></a>
                     <?php endif; ?>
                 </div>
             </div>

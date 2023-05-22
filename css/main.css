@@ -1,14 +1,17 @@
 /* general  */
 body {
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
     padding: 0;
     max-width: 1440px;
     font-family: Space Mono;
     z-index: 1;
+    
 
 }
-
+.container{
+    margin: 0;
+    padding: 0;
+}
 a {
     text-decoration: none;
     color: black;
@@ -137,7 +140,7 @@ footer {
     height: 769px;
     background-color: #fefefe;
     margin: auto;
-    padding: 20px;
+
     border: 5px solid #000000;
 }
 
@@ -488,7 +491,67 @@ margin: 30px 47px;
 }
 }
 
+/* Filtre */
+.filtre label {
+    font-family: Poppins;
+font-size: 14px;
+font-weight: 400;
+line-height: 21px;
+letter-spacing: 0em;
+text-align: left;
 
+}
 .filtre {
     display: flex;
+    justify-content: space-around;
+}
+.js-filter-form{
+
+    background: #FFFFFF;
+    
+}
+.filtre select {
+    width:272px;
+    height: 30px;
+    border: 1px black solid;
+}
+.filtre_taxo{
+    display: flex;
+    gap: 20px;
+}
+.filtre option {
+    background: white;
+    border: 1px #000000 solid;
+}
+@media screen and (max-width: 1200px){
+    .filtre {
+        display: flex;
+        
+    }
+
+}
+@media screen and (max-width: 800px){
+    .filtre select {
+        display: flex;
+        width:190px;
+        height: 25px;
+        border: 1px black solid;
+    }
+.filtre {
+    gap: 5px;
+}
+.filtre_taxo{
+    gap: 5px;
+}
+}
+
+@media screen and (max-width: 520px) {
+    .filtre{
+        display: flex;
+        flex-direction: column;
+    }
+    }
+.modal_content {
+    width: 597px;
+    padding : 0 ;
 }

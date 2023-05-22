@@ -19,62 +19,67 @@ Template Name: Accueil
                 <img src="<?php the_post_thumbnail_url(); ?>" alt="<?php the_title_attribute(); ?>" <?php endwhile; endif; ?>
             </div>
 </section>
-<?php
-// $categories = isset($_GET['categ']) ? $_GET['categ'] : '';
-// $format = isset($_GET['format']) ? $_GET['format'] : '';
-
-// $args = array(); // Initialise le tableau $args
-
-// if ($categories != '' && $categories !== '-1') {
-//     $args['tax_query'][] = array(
-//         'taxonomy' => 'categorie',
-//         'field' => 'slug',
-//         'terms' => $categories
-//     );
-// }
-
-// if ($format != '' && $format !== '-1') {
-//     $args['tax_query'][] = array(
-//         'taxonomy' => 'format',
-//         'field' => 'term_id',
-//         'terms' => $format
-//     );
-// }
-// ?>
 <div class="filtre">
-    <div class ="filtre_categ">
-<label for="categorie">CATEGORIES</label>
-<form class="js-filter-form" method="post">
-    <?php
-    $terms = get_terms('categorie');
-    $select = "<div class='filtre'><select name='categorie' id='cat1' class='postform'>";
-    $select .= "<option value='-1'></option>";
-    foreach ($terms as $term) {
-        if ($term->count > 0) {
-            $select .= "<option value='" . $term->slug . "'>" . $term->name . "</option>";
-        }
-    }
-    $select .= "</select></div>";
-    echo $select;
-    ?>
-</form>
-</div>
-<div class="filtre_form">
-<label for="format">FORMAT</label>
-<form class="js-filter-form" method="post">
-    <?php
-    $terms = get_terms('format');
-    $select = "<div class='filtre'><select name='format' id='format1' class='postform'>";
-    $select .= "<option value='-1'></option>";
-    foreach ($terms as $term) {
-        if ($term->count > 0) {
-            $select .= "<option value='" . $term->slug . "'>" . $term->name . "</option>";
-        }
-    }
-    $select .= "</select></div>";
-    echo $select;
-    ?>
-</form>
+    <div class="filtre_taxo">
+        <div class="filtre_categ">
+            <label for="categorie">CATEGORIES</label>
+            <form class="js-filter-form" method="post">
+                <?php
+                $terms = get_terms('categorie');
+                $select = "<div class='filtre'><select name='categorie' id='cat1' class='postform'>";
+                $select .= "<option value='-1'></option>";
+                foreach ($terms as $term) {
+                    if ($term->count > 0) {
+                        $select .= "<option value='" . $term->slug . "'>" . $term->name . "</option>";
+                    }
+                }
+                $select .= "</select></div>";
+                echo $select;
+                ?>
+            </form>
+        </div>
+        <div class="filtre_form">
+            <label for="format">FORMAT</label>
+            <form class="js-filter-form" method="post">
+                <?php
+                $terms = get_terms('format');
+                $select = "<div class='filtre'><select name='format' id='format1' class='postform'>";
+                $select .= "<option value='-1'></option>";
+                foreach ($terms as $term) {
+                    if ($term->count > 0) {
+                        $select .= "<option value='" . $term->slug . "'>" . $term->name . "</option>";
+                    }
+                }
+                $select .= "</select></div>";
+                echo $select;
+                ?>
+            </form>
+        </div>
+    </div>
+    <div class="filtre_date">
+        <label for="date">Date</label>
+        <form class="js-filter-form" method="post">
+            <!-- <?php
+            $terms = get_terms(
+                array(
+                    'taxonomy' => 'date',
+                    'hide_empty' => true,
+                )
+            );
+
+            $select = "<div class='date'><select name='date' id='date' class='postform'>";
+            $select .= "<option value='-1'></option>";
+            foreach ($terms as $term) {
+                $select .= "<option value='" . $term->slug . "'>" . $term->name . "</option>";
+            }
+            $select .= "</select></div>";
+            echo $select;
+            ?> -->
+
+            <select></select>
+        </form>
+    </div>
+    </form>
 </div>
 </div>
 
