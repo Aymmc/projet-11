@@ -105,6 +105,23 @@ Template Name: Accueil
                         <?php the_post_thumbnail(); ?>
 
                     </a>
+                    <div class="fadedbox">
+                        <div class="title text">
+                            <div class="titre">
+                                <p>
+                                <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                                </p>
+                            </div>
+                            <div class="categorie">
+                                <p>
+                                    <?php echo the_terms(get_the_ID(), 'categorie', false); ?>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="divoeil">
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?> '/asset/oeil.png' " alt="oeil">
+                    </div>
+                    </div>
                 </div>
             <?php endif;
         endwhile; ?>

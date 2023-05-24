@@ -47,7 +47,9 @@ jQuery('#cat1,#format1').on('change', function () {
       data: data,
       success: function (res) {
         $('.photo_toutephoto').html(res);
+        $('.chargerplus').empty();
       }
+
     });
   });
 

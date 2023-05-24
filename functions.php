@@ -181,9 +181,23 @@ function filter_post()
             ?>
             <div class="nouveau_block" data-category="<?php echo esc_attr(implode(',', wp_get_post_terms(get_the_ID(), 'categorie', array('fields' => 'slugs')))); ?>"data-format="<?php echo esc_attr(implode(',', wp_get_post_terms(get_the_ID(), 'format', array('fields' => 'slugs')))); ?>">
                 <div class="photo_newunephoto">
-                    <a href="<?php the_permalink(); ?>"><?php the_content(); ?>
+                   <?php the_content(); ?>
                     <?php if (has_post_thumbnail()): ?>
-                        <?php the_post_thumbnail(); ?></a>
+                        <?php the_post_thumbnail(); ?>
+                        <div class="fadedbox">
+                        <div class="title text">
+                            <div class="titre">
+                                <p>
+                                    <?php the_title(); ?>
+                                </p>
+                            </div>
+                            <div class="categorie">
+                                <p>
+                                    <?php echo the_terms(get_the_ID(), 'categorie', false); ?>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                     <?php endif; ?>
                 </div>
             </div>

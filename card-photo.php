@@ -22,6 +22,20 @@ $query = new WP_Query($args);
                     <?php the_post_thumbnail(); ?>
 
                 </a>
+                <div class="fadedbox">
+                        <div class="title text">
+                            <div class="titre">
+                                <p>
+                                    <?php the_title(); ?>
+                                </p>
+                            </div>
+                            <div class="categorie">
+                                <p>
+                                    <?php echo the_terms(get_the_ID(), 'categorie', false); ?>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
             </div>
         <?php endif; ?>
     <?php endwhile; ?>

@@ -5,16 +5,19 @@ body {
     max-width: 1440px;
     font-family: Space Mono;
     z-index: 1;
-    
+
 
 }
-.container{
+.menu_footer a, .chargerplus a{
+    color: black;
+} 
+.container {
     margin: 0;
     padding: 0;
 }
+
 a {
     text-decoration: none;
-    color: black;
     font-size: 16px;
 }
 
@@ -55,6 +58,10 @@ h2 {
     width: 216px;
 
 
+}
+
+.menu_header a {
+    color: black;
 }
 
 .header {
@@ -351,6 +358,7 @@ footer {
     margin-top: 2%;
     margin-bottom: 2%;
 }
+
 .btntoutephoto a {
     padding-top: 12px;
 }
@@ -437,22 +445,26 @@ footer {
     gap: 20px;
     margin: 30px 100px
 }
+
 .photo_newunephoto img {
     object-fit: cover;
     width: 100%;
     height: 100%;
 }
+
 .photo_unephoto img {
 
     object-fit: cover;
     width: 100%;
     height: 100%;
 }
+
 .photo_newunephoto {
     height: 29vw;
     width: 29vw;
 }
-.photo_unephoto  {
+
+.photo_unephoto {
     height: 29vw;
     width: 29vw;
 }
@@ -476,82 +488,201 @@ footer {
 }
 
 @media screen and (max-width: 520px) {
-.accueil_aleatoire_photo {
-    height: 50vh;
-}
-.photo_unephoto 
-.photo_newunephoto
- {
-    height: 52vw;
-    width: 73vw;
-}
-.photo_toutephoto .nouveau_block{
-gap: 8px;
-margin: 30px 47px;
-}
+    .accueil_aleatoire_photo {
+        height: 50vh;
+    }
+
+    .photo_unephoto .photo_newunephoto {
+        height: 52vw;
+        width: 73vw;
+    }
+
+    .photo_toutephoto .nouveau_block {
+        gap: 8px;
+        margin: 30px 47px;
+    }
 }
 
 /* Filtre */
 .filtre label {
     font-family: Poppins;
-font-size: 14px;
-font-weight: 400;
-line-height: 21px;
-letter-spacing: 0em;
-text-align: left;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: 0em;
+    text-align: left;
 
 }
+
 .filtre {
     display: flex;
     justify-content: space-around;
 }
-.js-filter-form{
+
+.js-filter-form {
 
     background: #FFFFFF;
-    
+
 }
+
 .filtre select {
-    width:272px;
+    width: 272px;
     height: 30px;
     border: 1px black solid;
 }
-.filtre_taxo{
+
+.filtre_taxo {
     display: flex;
     gap: 20px;
 }
+
 .filtre option {
     background: white;
     border: 1px #000000 solid;
 }
-@media screen and (max-width: 1200px){
+
+@media screen and (max-width: 1200px) {
     .filtre {
         display: flex;
-        
+
     }
 
 }
-@media screen and (max-width: 800px){
+
+@media screen and (max-width: 800px) {
     .filtre select {
         display: flex;
-        width:190px;
+        width: 190px;
         height: 25px;
         border: 1px black solid;
     }
-.filtre {
-    gap: 5px;
-}
-.filtre_taxo{
-    gap: 5px;
-}
+
+    .filtre {
+        gap: 5px;
+    }
+
+    .filtre_taxo {
+        gap: 5px;
+    }
 }
 
 @media screen and (max-width: 520px) {
-    .filtre{
+    .filtre {
         display: flex;
         flex-direction: column;
     }
-    }
+}
+
 .modal_content {
     width: 597px;
-    padding : 0 ;
+    padding: 0;
+}
+
+
+/* lightbox */
+
+.photo_unephoto {
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.photo_unephoto a {
+    color: #FFFFFF;
+    font-size: 21px;
+}
+
+.photo_unephoto .fadedbox {
+    background-color: #000000;
+    position: absolute;
+    top: 4%;
+    left: 0;
+    color: #fff;
+    opacity: 0;
+    height: 28vw;
+    width: 29vw;
+}
+
+.photo_unephoto:hover .fadedbox {
+    opacity: 0.5;
+}
+
+.photo_unephoto .title {
+    font-size: 21px;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+
+.fadedbox{
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+}
+
+.photo_unephoto:hover .title,
+.photo_unephoto:focus .title {
+    opacity: 1;
+}
+.title {
+    display: flex;
+    justify-content: space-between;
+}
+/* .photo_unephoto .divoeil {
+    background-color: #000000;
+    position: absolute;
+    top: 4%;
+    left: 0;
+    color: #fff;
+    opacity: 0;
+    height: 28vw;
+    width: 29vw;
+} */
+/* test */
+.photo_newunephoto {
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.photo_newunephoto a {
+    color: #FFFFFF;
+    font-size: 21px;
+}
+
+.photo_newunephoto .fadedbox {
+    background-color: #000000;
+    position: absolute;
+    top: 4%;
+    left: 0;
+    color: #fff;
+    opacity: 0;
+    height: 28vw;
+    width: 29vw;
+}
+
+.photo_newunephoto:hover .fadedbox {
+    opacity: 0.5;
+}
+
+.photo_newunephoto .title {
+    font-size: 21px;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.photo_newunephoto .fadedbox {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+}
+
+.photo_newunephoto:hover .title,
+.photo_newunephoto:focus .title {
+    opacity: 1;
+}
+
+.title {
+    display: flex;
+    justify-content: space-between;
 }
