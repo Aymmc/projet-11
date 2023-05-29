@@ -31,12 +31,12 @@
                 <?php $count++; ?>
                 <?php $query->the_post(); ?>
                 
-                    <p>
+                    
                         <?php the_content(); ?>
-                    </p>
                     <?php if (has_post_thumbnail()): ?>
                         <div class="photo_aimerezaussi">
                             <?php the_post_thumbnail(); ?>
+                            
                         </div>
                         <?php if ($count == 2) {
                             break; // sortir de la boucle si deux photos ont été traitées

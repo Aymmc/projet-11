@@ -23,19 +23,29 @@ $query = new WP_Query($args);
 
                 </a>
                 <div class="fadedbox">
-                        <div class="title text">
-                            <div class="titre">
-                                <p>
-                                    <?php the_title(); ?>
-                                </p>
-                            </div>
-                            <div class="categorie">
-                                <p>
-                                    <?php echo the_terms(get_the_ID(), 'categorie', false); ?>
-                                </p>
-                            </div>
+                    <div class="title text">
+                        <div class="titre">
+                            <p>
+                                <?php the_title(); ?>
+                            </p>
+                        </div>
+                        <div class="categorie">
+                            <p>
+                                <?php echo the_terms(get_the_ID(), 'categorie', false); ?>
+                            </p>
                         </div>
                     </div>
+                    <div class="divoeil">
+                        <a href="<?php the_permalink(); ?>"><img
+                                src="<?php echo get_stylesheet_directory_uri(); ?> '/asset/oeil.png' " alt="oeil"></a>
+                    </div>
+                    <div class="divfullscreen">
+                        <button class="buttonlightbox" data-titre="<?php the_title(); ?>" data-date="<?php $post_date = get_the_date('Y');
+                          echo $post_date; ?>"
+                            data-image="<?php echo esc_attr(get_the_post_thumbnail_url(get_the_ID())); ?>"></button>
+
+                    </div>
+                </div>
             </div>
         <?php endif; ?>
     <?php endwhile; ?>

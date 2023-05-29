@@ -8,9 +8,14 @@ body {
 
 
 }
-.menu_footer a, .chargerplus a{
+
+.menu_footer a,
+.chargerplus a,
+.post_description a,
+.btntoutephoto a {
     color: black;
-} 
+}
+
 .container {
     margin: 0;
     padding: 0;
@@ -614,7 +619,7 @@ footer {
 }
 
 
-.fadedbox{
+.fadedbox {
     display: flex;
     justify-content: flex-end;
     flex-direction: column;
@@ -624,20 +629,20 @@ footer {
 .photo_unephoto:focus .title {
     opacity: 1;
 }
+
 .title {
     display: flex;
     justify-content: space-between;
 }
-/* .photo_unephoto .divoeil {
-    background-color: #000000;
+
+.divoeil img {
+    width: 46px;
+    height: 46px;
     position: absolute;
-    top: 4%;
-    left: 0;
-    color: #fff;
-    opacity: 0;
-    height: 28vw;
-    width: 29vw;
-} */
+    top: 43%;
+    left: 45%;
+}
+
 /* test */
 .photo_newunephoto {
     cursor: pointer;
@@ -685,4 +690,50 @@ footer {
 .title {
     display: flex;
     justify-content: space-between;
+}
+
+
+/* Lightbox */
+
+.lightbox{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 0, 0, .9);
+    z-index: 10;
+    overflow: auto;
+    display: none;
+}
+.lightbox__close{
+    background: url('close.png');border: none;
+    height: 44px;
+width: 44px;
+position: fixed;
+text-indent: -3000px;
+top:20px;
+right: 20px;
+cursor: pointer;
+z-index: 12;
+}
+.lightbox__container img {
+    max-width: 100%;
+    height: auto;
+}
+.lightbox__container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 100vh;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+.buttonlightbox {
+    Width:35px;
+    Height:35px;
+    background-color: black;
+    position: absolute;
+    top: 2%;
+    left: 92%;
 }

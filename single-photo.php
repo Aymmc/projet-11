@@ -1,9 +1,6 @@
 <?php
 
-/**
- * Template Name: Single
- * Template Post Type: photo
- */
+
 get_header() ?>
 
 <div id="primary" class="contant">
@@ -42,9 +39,12 @@ get_header() ?>
                                 class="post-thumbnail" />
                         <?php endif; ?>
                         <?php the_content(); ?>
+                        
                     </div>
                 </div>
             </article><!-- #post-<?php the_ID(); ?> -->
+
+            <!-- Intéressé -->
             <section class="section_interesse">
                 <div class="interesse">
                     <div class="btn_interesse">

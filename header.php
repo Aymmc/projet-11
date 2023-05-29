@@ -29,5 +29,6 @@
         </div>
 
         <?php include_once "templates_parts/modale.php"; ?>
+        <?php include_once "templates_parts/lightbox.php";?>
     </header>
     <div class="container">

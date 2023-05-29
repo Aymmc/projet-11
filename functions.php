@@ -20,7 +20,7 @@ function script_modal()
 {
     wp_enqueue_script('modal', get_template_directory_uri() . '/js/script.js', array('jquery'), '1.0', true);
     wp_enqueue_script('ajax', get_template_directory_uri() . '/js/ajax.js', array('jquery'), '1.0', true);
-    wp_enqueue_script('ajaxfiltre', get_template_directory_uri() . '/js/ajaxfiltre.js', array('jquery'), '1.0', true);
+    wp_enqueue_script('lightbox', get_template_directory_uri() . '/js/lightbox.js', array('jquery'), '1.0', true);
 }
 add_action('wp_enqueue_scripts', 'script_modal');
 function montheme_supports()
@@ -197,6 +197,14 @@ function filter_post()
                                 </p>
                             </div>
                         </div>
+                        <div class="divoeil">
+                        <a href="<?php the_permalink(); ?>"><img src="<?php echo get_stylesheet_directory_uri(); ?> '/asset/oeil.png' " alt="oeil"></a>
+                    </div>
+                    <div class="divfullscreen">
+                    <button class="buttonlightbox" data-titre="<?php the_title(); ?>" data-date="<?php $post_date = get_the_date('Y');
+                            echo $post_date; ?>" data-image="<?php echo esc_attr(get_the_post_thumbnail_url(get_the_ID())); ?>"></button>
+
+                    </div>
                     </div>
                     <?php endif; ?>
                 </div>
