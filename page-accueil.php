@@ -59,22 +59,16 @@ Template Name: Accueil
     <div class="filtre_date">
         <label for="date">Date</label>
         <form class="js-filter-form" method="post">
-            <!-- <?php
-            $terms = get_terms(
-                array(
-                    'taxonomy' => 'date',
-                    'hide_empty' => true,
-                )
-            );
-
-            $select = "<div class='date'><select name='date' id='date' class='postform'>";
+            <?php
+            $terms = get_terms('date');
+            $select = "<div class='date'><select name='date' id='date1' class='postform'>";
             $select .= "<option value='-1'></option>";
             foreach ($terms as $term) {
                 $select .= "<option value='" . $term->slug . "'>" . $term->name . "</option>";
             }
             $select .= "</select></div>";
             echo $select;
-            ?> -->
+            ?>
 
             <select></select>
         </form>
@@ -120,12 +114,14 @@ Template Name: Accueil
                                 src="<?php echo get_stylesheet_directory_uri(); ?> '/asset/oeil.png' " alt="oeil"> </a>
                     </div>
                     <div class="divfullscreen">
-                    <button class="buttonlightbox" data-image="<?php echo esc_attr(get_the_post_thumbnail_url(get_the_ID())); ?>"></button>
+                        <button class="buttonlightbox" data-titre="<?php the_title(); ?>" data-date="<?php $post_date = get_the_date('Y');
+                          echo $post_date; ?>"
+                            data-image="<?php echo esc_attr(get_the_post_thumbnail_url(get_the_ID())); ?>"></button>
 
                     </div>
                 </div>
             </div>
-        <?php
+            <?php
         endwhile; ?>
 
 

@@ -29,7 +29,7 @@ console.log('test')
 jQuery('#cat1,#format1').on('change', function () {
   var categorie = jQuery('#cat1').val();
   var format = jQuery('#format1').val();
-
+  var date = jQuery('#date1').val();
 
   var data = {
     action: 'filter_post'
@@ -40,6 +40,9 @@ jQuery('#cat1,#format1').on('change', function () {
   }
     if (format) {
       data.format = format;
+    }
+    if(date){
+      data.date = date;
     }
     jQuery.ajax({
       type: 'POST',

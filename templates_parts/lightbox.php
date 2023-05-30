@@ -9,8 +9,8 @@ while (have_posts()):
             <div class="lightbox__container">
                 <img class="lightbox__image" src="" alt="Image">
 
-            <div class ="titrephotolightbox"> </div>
-            <div class="anneephotolightbox">  </div>
+            <p class ="lightbox__titre"> </p>
+            <p class="lightbox__date">  </p>
         </div>
         </article><!-- #post-<?php the_ID(); ?> -->
         <?php endwhile; ?>

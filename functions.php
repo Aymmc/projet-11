@@ -79,7 +79,7 @@ function my_admin_notices()
     }
 }
 
-/* CHag */
+/* Chargez Plus */
 function weichie_load_more()
 {
     $ajaxposts = new WP_Query([

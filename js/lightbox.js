@@ -10,14 +10,22 @@ var buttonlightbox = document.querySelectorAll('.buttonlightbox');
 // Lorsque l'un des boutons est cliqué
 buttonlightbox.forEach(button => {
   button.addEventListener('click', function(e) {
-    // Récupérer l'URL de l'image associée au bouton
+    // Récupérer l'URL, le titre et la date de l'image associée au bouton
     var imageSrc = button.getAttribute('data-image');
+    var imageTitre = button.getAttribute('data-titre');
+    var imageDate = button.getAttribute('data-date');
     
     // Sélectionner l'élément de l'image dans la lightbox
     var lightboxImage = lightbox.querySelector('.lightbox__image');
+    var lightboxTitre = lightbox.querySelector('.lightbox__titre');
+    var lightboxDate = lightbox.querySelector('.lightbox__date');
     
     // Définir la source de l'image avec l'URL récupérée
     lightboxImage.setAttribute('src', imageSrc);
+    
+    // Définir le titre et la date de l'image dans la lightbox
+    lightboxTitre.textContent = imageTitre;
+    lightboxDate.textContent = imageDate;
     
     // Afficher la lightbox
     lightbox.style.display = 'block';
