@@ -26,35 +26,28 @@ console.log('test')
 
 // Filtre Catégorie 
 
-jQuery('#cat1,#format1').on('change', function () {
+jQuery('#cat1, #format1, #date1').on('change', function() {
   var categorie = jQuery('#cat1').val();
   var format = jQuery('#format1').val();
   var date = jQuery('#date1').val();
 
   var data = {
-    action: 'filter_post'
+    action: 'filter_post',
+    categorie: categorie,
+    format: format,
+    date: date // Ajout de la clé 'date' avec la valeur sélectionnée
   };
 
-  if (categorie) {
-    data.categorie = categorie;
-  }
-    if (format) {
-      data.format = format;
+  jQuery.ajax({
+    type: 'POST',
+    url: '/motaphoto/wp-admin/admin-ajax.php',
+    data: data,
+    success: function(res) {
+      $('.photo_toutephoto').html(res);
+      $('.chargerplus').empty();
     }
-    if(date){
-      data.date = date;
-    }
-    jQuery.ajax({
-      type: 'POST',
-      url: '/motaphoto/wp-admin/admin-ajax.php',
-      data: data,
-      success: function (res) {
-        $('.photo_toutephoto').html(res);
-        $('.chargerplus').empty();
-      }
-
-    });
   });
+});
 
 // Filtre format
 // jQuery('#format1').on('change', function() {

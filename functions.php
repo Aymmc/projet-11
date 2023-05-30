@@ -146,13 +146,14 @@ function filter_post()
     // Récupère les catégories sélectionnées depuis la requête POST
     $cat = isset($_POST['categorie']) ? sanitize_text_field($_POST['categorie']) : '';
     $format = isset($_POST['format']) ? sanitize_text_field($_POST['format']) : '';
+    $date = isset($_POST['date']) ? sanitize_text_field($_POST['date']) : '';
 
     // Définit les arguments de la requête WP_Query
     $args = array(
         'post_type' => 'photo', // Type de publication : "photo"
         'posts_per_page' => 8, // Nombre de publications à afficher par page
         'paged' => 1, // Numéro de page
-        'tax_query' => array( // Requête de taxonomie pour filtrer par catégorie
+        'tax_query' => array( // Requête de taxonomie pour filtrer par catégorie et format
             array(
                 'taxonomy' => 'categorie', // Taxonomie : "categorie"
                 'field' => 'slug', // Champ utilisé pour la correspondance : slug
@@ -163,7 +164,9 @@ function filter_post()
                 'field' => 'slug', // Champ utilisé pour la correspondance : slug
                 'terms' => ($format == -1 ? get_terms('format', array('fields' => 'slugs')) : $format) // Termes du format à filtrer
             )
-        )
+        ),
+        'orderby' => ($date === 'anciens') ? 'date' : 'date', // Tri par date (plus ancien ou plus récent)
+        'order' => ($date === 'anciens') ? 'ASC' : 'DESC', // Tri ascendant (plus ancien) ou descendant (plus récent)
     );
 
     // Effectue la requête WP_Query avec les arguments définis
@@ -179,33 +182,31 @@ function filter_post()
 
             // Affiche le code HTML de chaque publication
             ?>
-            <div class="nouveau_block" data-category="<?php echo esc_attr(implode(',', wp_get_post_terms(get_the_ID(), 'categorie', array('fields' => 'slugs')))); ?>"data-format="<?php echo esc_attr(implode(',', wp_get_post_terms(get_the_ID(), 'format', array('fields' => 'slugs')))); ?>">
+            <div class="nouveau_block" data-category="<?php echo esc_attr(implode(',', wp_get_post_terms(get_the_ID(), 'categorie', array('fields' => 'slugs')))); ?>" data-format="<?php echo esc_attr(implode(',', wp_get_post_terms(get_the_ID(), 'format', array('fields' => 'slugs')))); ?>">
                 <div class="photo_newunephoto">
-                   <?php the_content(); ?>
+                    <?php the_content(); ?>
                     <?php if (has_post_thumbnail()): ?>
                         <?php the_post_thumbnail(); ?>
                         <div class="fadedbox">
-                        <div class="title text">
-                            <div class="titre">
-                                <p>
-                                    <?php the_title(); ?>
-                                </p>
+                            <div class="title text">
+                                <div class="titre">
+                                    <p>
+                                        <?php the_title(); ?>
+                                    </p>
+                                </div>
+                                <div class="categorie">
+                                    <p>
+                                        <?php echo the_terms(get_the_ID(), 'categorie', false); ?>
+                                    </p>
+                                </div>
                             </div>
-                            <div class="categorie">
-                                <p>
-                                    <?php echo the_terms(get_the_ID(), 'categorie', false); ?>
-                                </p>
+                            <div class="divoeil">
+                                <a href="<?php the_permalink(); ?>"><img src="<?php echo get_stylesheet_directory_uri(); ?>/asset/oeil.png" alt="oeil"></a>
+                            </div>
+                            <div class="divfullscreen">
+                                <button class="buttonlightbox" data-titre="<?php the_title(); ?>" data-date="<?php $post_date = get_the_date('Y'); echo $post_date; ?>" data-image="<?php echo esc_attr(get_the_post_thumbnail_url(get_the_ID())); ?>"></button>
                             </div>
                         </div>
-                        <div class="divoeil">
-                        <a href="<?php the_permalink(); ?>"><img src="<?php echo get_stylesheet_directory_uri(); ?> '/asset/oeil.png' " alt="oeil"></a>
-                    </div>
-                    <div class="divfullscreen">
-                    <button class="buttonlightbox" data-titre="<?php the_title(); ?>" data-date="<?php $post_date = get_the_date('Y');
-                            echo $post_date; ?>" data-image="<?php echo esc_attr(get_the_post_thumbnail_url(get_the_ID())); ?>"></button>
-
-                    </div>
-                    </div>
                     <?php endif; ?>
                 </div>
             </div>
@@ -226,3 +227,29 @@ function filter_post()
 
 add_action('wp_ajax_filter_post', 'filter_post');
 add_action('wp_ajax_nopriv_filter_post', 'filter_post');
+
+// Recupere date 
+function get_unique_post_dates() {
+    $dates = array();
+
+    $args = array(
+        'post_type' => 'post', // Remplacez 'post' par votre type de contenu personnalisé si nécessaire
+        'posts_per_page' => -1,
+        'orderby' => ( $_POST['date'] === 'anciens' ) ? 'date' : 'date', // Tri par date (plus ancien ou plus récent)
+        'order' => ( $_POST['date'] === 'anciens' ) ? 'ASC' : 'DESC', // Tri ascendant (plus ancien) ou descendant (plus récent)
+    );
+    
+    $query = new WP_Query($args);
+
+    while ($query->have_posts()) {
+        $query->the_post();
+        $date = get_the_date('Y-m-d'); // Format de date souhaité, ici 'Y-m-d'
+        if (!in_array($date, $dates)) {
+            $dates[] = $date;
+        }
+    }
+
+    wp_reset_postdata();
+
+    return $dates;
+}

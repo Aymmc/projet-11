@@ -57,25 +57,19 @@ Template Name: Accueil
         </div>
     </div>
     <div class="filtre_date">
-        <label for="date">Date</label>
-        <form class="js-filter-form" method="post">
-            <?php
-            $terms = get_terms('date');
-            $select = "<div class='date'><select name='date' id='date1' class='postform'>";
-            $select .= "<option value='-1'></option>";
-            foreach ($terms as $term) {
-                $select .= "<option value='" . $term->slug . "'>" . $term->name . "</option>";
-            }
-            $select .= "</select></div>";
-            echo $select;
-            ?>
-
-            <select></select>
-        </form>
-    </div>
+    <label for="date">Date</label>
+    <form class="js-filter-form" method="post">
+        <div class='date'>
+            <select name='date' id='date1' class='postform'>
+                <option value='-1'></option>
+                <option value='nouveaute'>Nouveauté</option>
+                <option value='anciens'>Les plus anciens</option>
+            </select>
+        </div>
     </form>
 </div>
 </div>
+
 
 <div class="photo_toutephoto">
 
