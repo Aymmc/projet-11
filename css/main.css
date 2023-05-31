@@ -584,7 +584,7 @@ footer {
 }
 
 
-/* lightbox */
+/* lightbox hover*/
 
 .photo_unephoto {
     cursor: pointer;
@@ -600,11 +600,11 @@ footer {
 .photo_unephoto .fadedbox {
     background-color: #000000;
     position: absolute;
-    top: 4%;
+    top: 3%;
     left: 0;
     color: #fff;
     opacity: 0;
-    height: 28vw;
+    height: 29vw;
     width: 29vw;
 }
 
@@ -643,7 +643,8 @@ footer {
     left: 45%;
 }
 
-/* test */
+
+/*  lightbox hover newunephoto */
 .photo_newunephoto {
     cursor: pointer;
     position: relative;
@@ -658,11 +659,11 @@ footer {
 .photo_newunephoto .fadedbox {
     background-color: #000000;
     position: absolute;
-    top: 4%;
+    top: 0%;
     left: 0;
     color: #fff;
     opacity: 0;
-    height: 28vw;
+    height: 29vw;
     width: 29vw;
 }
 
@@ -692,10 +693,60 @@ footer {
     justify-content: space-between;
 }
 
+/*  lightbox hover aimerezaussi */
+
+.photo_aimerezaussi {
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.photo_aimerezaussi a {
+    color: #FFFFFF;
+    font-size: 21px;
+}
+
+.photo_aimerezaussi .fadedbox {
+    background-color: #000000;
+    position: absolute;
+    top: 0%;
+    left: 0;
+    color: #fff;
+    opacity: 0;
+    height: 37vw;
+    width: 37vw;
+
+}
+
+.photo_aimerezaussi:hover .fadedbox {
+    opacity: 0.5;
+}
+
+.photo_aimerezaussi .title {
+    font-size: 21px;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.photo_aimerezaussi .fadedbox {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+}
+
+.photo_aimerezaussi:hover .title,
+.photo_aimerezaussi:focus .title {
+    opacity: 1;
+}
+
+.title {
+    display: flex;
+    justify-content: space-between;
+}
 
 /* Lightbox */
 
-.lightbox{
+.lightbox {
     position: fixed;
     top: 0;
     left: 0;
@@ -706,34 +757,44 @@ footer {
     overflow: auto;
     display: none;
 }
-.lightbox__close{
-    background: url('close.png');border: none;
+
+.lightbox__close {
+    background: url('close.png');
+    border: none;
     height: 44px;
-width: 44px;
-position: fixed;
-text-indent: -3000px;
-top:20px;
-right: 20px;
-cursor: pointer;
-z-index: 12;
+    width: 44px;
+    position: fixed;
+    text-indent: -3000px;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    z-index: 12;
 }
+
 .lightbox__container img {
     max-width: 100%;
     height: auto;
 }
-.lightbox__container{
+
+.lightbox__container {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 100vh;
-    margin-left: 50px;
+    flex-direction: column;
+    max-width: 90vh;
+    max-height: 90vh;
+    margin-left: 27%;
     margin-right: 50px;
 }
+
 .buttonlightbox {
-    Width:35px;
-    Height:35px;
+    Width: 35px;
+    Height: 35px;
     background-color: black;
     position: absolute;
     top: 2%;
     left: 92%;
+}
+.lightbox__titredate p {
+    color: #fff;
 }

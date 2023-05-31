@@ -57,7 +57,7 @@ Template Name: Accueil
         </div>
     </div>
     <div class="filtre_date">
-    <label for="date">Date</label>
+    <label for="date">DATE</label>
     <form class="js-filter-form" method="post">
         <div class='date'>
             <select name='date' id='date1' class='postform'>

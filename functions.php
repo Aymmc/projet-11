@@ -143,6 +143,7 @@ add_filter('widget-text', 'do_shortcode');
 
 function filter_post()
 {
+
     // Récupère les catégories sélectionnées depuis la requête POST
     $cat = isset($_POST['categorie']) ? sanitize_text_field($_POST['categorie']) : '';
     $format = isset($_POST['format']) ? sanitize_text_field($_POST['format']) : '';
@@ -150,22 +151,31 @@ function filter_post()
 
     // Définit les arguments de la requête WP_Query
     $args = array(
-        'post_type' => 'photo', // Type de publication : "photo"
-        'posts_per_page' => 8, // Nombre de publications à afficher par page
-        'paged' => 1, // Numéro de page
-        'tax_query' => array( // Requête de taxonomie pour filtrer par catégorie et format
+        'post_type' => 'photo',
+        // Type de publication : "photo"
+        'posts_per_page' => 8,
+        // Nombre de publications à afficher par page
+        'paged' => 1,
+        // Numéro de page
+        'tax_query' => array(
+            // Requête de taxonomie pour filtrer par catégorie et format
             array(
-                'taxonomy' => 'categorie', // Taxonomie : "categorie"
-                'field' => 'slug', // Champ utilisé pour la correspondance : slug
+                'taxonomy' => 'categorie',
+                // Taxonomie : "categorie"
+                'field' => 'slug',
+                // Champ utilisé pour la correspondance : slug
                 'terms' => ($cat == -1 ? get_terms('categorie', array('fields' => 'slugs')) : $cat) // Termes de la catégorie à filtrer
             ),
             array(
-                'taxonomy' => 'format', // Taxonomie : "format"
-                'field' => 'slug', // Champ utilisé pour la correspondance : slug
+                'taxonomy' => 'format',
+                // Taxonomie : "format"
+                'field' => 'slug',
+                // Champ utilisé pour la correspondance : slug
                 'terms' => ($format == -1 ? get_terms('format', array('fields' => 'slugs')) : $format) // Termes du format à filtrer
             )
         ),
-        'orderby' => ($date === 'anciens') ? 'date' : 'date', // Tri par date (plus ancien ou plus récent)
+        'orderby' => ($date === 'anciens') ? 'date' : 'date',
+        // Tri par date (plus ancien ou plus récent)
         'order' => ($date === 'anciens') ? 'ASC' : 'DESC', // Tri ascendant (plus ancien) ou descendant (plus récent)
     );
 
@@ -179,10 +189,12 @@ function filter_post()
         // Boucle while pour parcourir les publications
         while ($ajaxfilter->have_posts()) {
             $ajaxfilter->the_post();
-
             // Affiche le code HTML de chaque publication
             ?>
-            <div class="nouveau_block" data-category="<?php echo esc_attr(implode(',', wp_get_post_terms(get_the_ID(), 'categorie', array('fields' => 'slugs')))); ?>" data-format="<?php echo esc_attr(implode(',', wp_get_post_terms(get_the_ID(), 'format', array('fields' => 'slugs')))); ?>">
+
+            <div class="nouveau_block"
+                data-category="<?php echo esc_attr(implode(',', wp_get_post_terms(get_the_ID(), 'categorie', array('fields' => 'slugs')))); ?>"
+                data-format="<?php echo esc_attr(implode(',', wp_get_post_terms(get_the_ID(), 'format', array('fields' => 'slugs')))); ?>">
                 <div class="photo_newunephoto">
                     <?php the_content(); ?>
                     <?php if (has_post_thumbnail()): ?>
@@ -201,15 +213,104 @@ function filter_post()
                                 </div>
                             </div>
                             <div class="divoeil">
-                                <a href="<?php the_permalink(); ?>"><img src="<?php echo get_stylesheet_directory_uri(); ?>/asset/oeil.png" alt="oeil"></a>
+                                <a href="<?php the_permalink(); ?>"><img
+                                        src="<?php echo get_stylesheet_directory_uri(); ?>/asset/oeil.png" alt="oeil"></a>
                             </div>
                             <div class="divfullscreen">
-                                <button class="buttonlightbox" data-titre="<?php the_title(); ?>" data-date="<?php $post_date = get_the_date('Y'); echo $post_date; ?>" data-image="<?php echo esc_attr(get_the_post_thumbnail_url(get_the_ID())); ?>"></button>
+                                <button class="buttonlightbox" data-titre="<?php the_title(); ?>"
+                                    data-date="<?php $post_date = get_the_date('Y');
+                                    echo $post_date; ?>"
+                                    data-image="<?php echo esc_attr(get_the_post_thumbnail_url(get_the_ID())); ?>"></button>
                             </div>
                         </div>
                     <?php endif; ?>
                 </div>
             </div>
+
+
+
+
+            <script> $(document).ready(function() {
+  // Sélectionner l'élément de la lightbox
+  var lightbox = document.querySelector('.lightbox');
+
+  // Sélectionner le bouton de fermeture de la lightbox
+  var spanlightbox = document.querySelector('.lightbox__close');
+
+  // Sélectionner tous les boutons qui ouvrent la lightbox
+  var buttonlightbox = document.querySelectorAll('.buttonlightbox');
+
+  // Lorsque l'un des boutons est cliqué
+  buttonlightbox.forEach(function(button, index) {
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+
+      // Récupérer l'URL, le titre et la date de l'image associée au bouton
+      var imageSrc = button.getAttribute('data-image');
+      var imageTitre = button.getAttribute('data-titre');
+      var imageDate = button.getAttribute('data-date');
+
+      // Sélectionner l'élément de l'image dans la lightbox
+      var lightboxImage = lightbox.querySelector('.lightbox__image');
+      var lightboxTitre = lightbox.querySelector('.lightbox__titre');
+      var lightboxDate = lightbox.querySelector('.lightbox__date');
+
+      // Définir la source de l'image avec l'URL récupérée
+      lightboxImage.setAttribute('src', imageSrc);
+
+      // Définir le titre et la date de l'image dans la lightbox
+      lightboxTitre.textContent = imageTitre;
+      lightboxDate.textContent = imageDate;
+
+      // Afficher la lightbox
+      lightbox.style.display = 'block';
+
+      // Enregistrer l'index du bouton cliqué pour la navigation
+      lightbox.setAttribute('data-current-index', index);
+    });
+  });
+
+  // Lorsque le bouton de fermeture est cliqué
+  spanlightbox.onclick = function() {
+    // Cacher la lightbox
+    lightbox.style.display = 'none';
+  };
+
+  // Lorsque l'utilisateur clique en dehors de la lightbox
+  window.onclick = function(event) {
+    // Si l'élément cliqué est la lightbox elle-même
+    if (event.target == lightbox) {
+      // Cacher la lightbox
+      lightbox.style.display = 'none';
+    }
+  };
+
+  // Lorsque les flèches gauche et droite sont cliquées
+  lightbox.querySelector('.fleche-gauche').addEventListener('click', function(e) {
+    e.stopPropagation(); // Empêche la propagation de l'événement pour éviter la fermeture de la lightbox
+    // parseInt permet de recuperer une chaine de caractères en entier 
+    var currentIndex = parseInt(lightbox.getAttribute('data-current-index'));
+    var previousButton = buttonlightbox[currentIndex - 1];
+    if (previousButton) {
+      previousButton.click();
+      lightbox.setAttribute('data-current-index', currentIndex - 1);
+    }
+  });
+
+  lightbox.querySelector('.fleche-droite').addEventListener('click', function(e) {
+    e.stopPropagation(); // Empêche la propagation de l'événement pour éviter la fermeture de la lightbox
+
+    var currentIndex = parseInt(lightbox.getAttribute('data-current-index'));
+    var nextButton = buttonlightbox[currentIndex + 1];
+    if (nextButton) {
+      nextButton.click();
+      lightbox.setAttribute('data-current-index', currentIndex + 1);
+    }
+  });
+});
+
+
+            </script>
             <?php
         }
 
@@ -229,16 +330,19 @@ add_action('wp_ajax_filter_post', 'filter_post');
 add_action('wp_ajax_nopriv_filter_post', 'filter_post');
 
 // Recupere date 
-function get_unique_post_dates() {
+function get_unique_post_dates()
+{
     $dates = array();
 
     $args = array(
-        'post_type' => 'post', // Remplacez 'post' par votre type de contenu personnalisé si nécessaire
+        'post_type' => 'post',
+        // Remplacez 'post' par votre type de contenu personnalisé si nécessaire
         'posts_per_page' => -1,
-        'orderby' => ( $_POST['date'] === 'anciens' ) ? 'date' : 'date', // Tri par date (plus ancien ou plus récent)
-        'order' => ( $_POST['date'] === 'anciens' ) ? 'ASC' : 'DESC', // Tri ascendant (plus ancien) ou descendant (plus récent)
+        'orderby' => ($_POST['date'] === 'anciens') ? 'date' : 'date',
+        // Tri par date (plus ancien ou plus récent)
+        'order' => ($_POST['date'] === 'anciens') ? 'ASC' : 'DESC', // Tri ascendant (plus ancien) ou descendant (plus récent)
     );
-    
+
     $query = new WP_Query($args);
 
     while ($query->have_posts()) {

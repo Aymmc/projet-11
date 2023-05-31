@@ -24,7 +24,7 @@
     <header>
 
         <div class="menu_header">
-            <a href="http://localhost/motaphoto/"><img src="<?php echo get_stylesheet_directory_uri(); ?> '/asset/logo.png' " alt="logo"> </a>
+        <a href="<?php echo site_url() ?>"><img src="<?php echo get_stylesheet_directory_uri(); ?> '/asset/logo.png' " alt="logo"> </a>
             <?php wp_nav_menu(['theme_location' => 'header', 'container' => false, 'menu_class' => 'header']) ?>
         </div>
 
