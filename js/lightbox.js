@@ -17,11 +17,12 @@ $(document).ready(function() {
       var imageSrc = button.getAttribute('data-image');
       var imageTitre = button.getAttribute('data-titre');
       var imageDate = button.getAttribute('data-date');
-
+      var imagecateg = button.getAttribute('data-categ');
       // Sélectionner l'élément de l'image dans la lightbox
       var lightboxImage = lightbox.querySelector('.lightbox__image');
       var lightboxTitre = lightbox.querySelector('.lightbox__titre');
       var lightboxDate = lightbox.querySelector('.lightbox__date');
+      var lightboxcateg = lightbox.querySelector('.lightbox__categ');
 
       // Définir la source de l'image avec l'URL récupérée
       lightboxImage.setAttribute('src', imageSrc);
@@ -29,6 +30,7 @@ $(document).ready(function() {
       // Définir le titre et la date de l'image dans la lightbox
       lightboxTitre.textContent = imageTitre;
       lightboxDate.textContent = imageDate;
+      lightboxcateg.textContent = imagecateg;
 
       // Afficher la lightbox
       lightbox.style.display = 'block';

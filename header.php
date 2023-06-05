@@ -22,13 +22,20 @@
 
 <body>
     <header>
-
+        <div class ="headermenu">
         <div class="menu_header">
+            
         <a href="<?php echo site_url() ?>"><img src="<?php echo get_stylesheet_directory_uri(); ?> '/asset/logo.png' " alt="logo"> </a>
-            <?php wp_nav_menu(['theme_location' => 'header', 'container' => false, 'menu_class' => 'header']) ?>
+        <div class="buttonmenu">
+            <span></span>
+          </div>
+        <?php wp_nav_menu(['theme_location' => 'header', 'container' => false, 'menu_class' => 'header']) ?>
+            
         </div>
 
+    </div>
         <?php include_once "templates_parts/modale.php"; ?>
         <?php include_once "templates_parts/lightbox.php";?>
+        <?php include_once "templates_parts/menuburger.php";?>
     </header>
     <div class="container">

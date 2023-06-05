@@ -121,6 +121,21 @@ footer {
     display: flex;
 }
 
+@media screen and (max-width: 800px) {
+    .footer {
+        gap: 24px;
+
+    }
+
+    #menu-footer {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+
+
+
 /* Overlay */
 .modal {
     display: none;
@@ -270,6 +285,7 @@ footer {
 .post_description {
     padding-bottom: 2%;
     border-bottom: #000 1px solid;
+    width: 50vw;
 }
 
 .post_separation {
@@ -402,7 +418,7 @@ footer {
     }
 
     .modal-content {
-        width: 100vw;
+        width: 98vw;
         margin: 0px;
         padding: 0px;
         height: none;
@@ -484,7 +500,8 @@ footer {
     font-weight: 400;
     font-size: 12px;
     line-height: 18px;
-    padding: 0.5%
+    padding: 0.5%;
+    margin-bottom: 1.5%;
 }
 
 .chargerplus {
@@ -492,19 +509,23 @@ footer {
     justify-content: center;
 }
 
-@media screen and (max-width: 520px) {
+@media screen and (max-width: 800px) {
     .accueil_aleatoire_photo {
         height: 50vh;
     }
 
-    .photo_unephoto .photo_newunephoto {
-        height: 52vw;
-        width: 73vw;
+    .photo_unephoto,
+    .photo_newunephoto {
+        height: 53vw;
+        width: 54vw;
+        margin: 0 0 0 0 0;
+        gap: 0px;
     }
 
-    .photo_toutephoto .nouveau_block {
-        gap: 8px;
-        margin: 30px 47px;
+    .photo_toutephoto,
+    .nouveau_block {
+        gap: 10px;
+        margin: 0px 0px;
     }
 }
 
@@ -625,6 +646,16 @@ footer {
     flex-direction: column;
 }
 
+.buttonlightbox {
+    border: none;
+    background-color: #000;
+}
+
+.divfullscreen img {
+    cursor: pointer;
+    background-color: #000;
+}
+
 .photo_unephoto:hover .title,
 .photo_unephoto:focus .title {
     opacity: 1;
@@ -643,7 +674,59 @@ footer {
     left: 45%;
 }
 
+@media screen and (max-width: 800px) {
 
+    .photo_unephoto .fadedbox,
+    .photo_aimerezaussi .fadedbox,
+    .photo_newunephoto .fadedbox {
+        background-color: #000000;
+        position: absolute;
+        top: 7%;
+        left: 0;
+        color: #fff;
+        opacity: 0;
+        height: 51vw;
+        width: 55vw;
+    }
+
+    .photo_unephoto a,
+    .photo_aimerezaussi a,
+    .photo_newunephoto a {
+        color: #FFFFFF;
+        font-size: 18px;
+    }
+
+    .photo_unephoto p,
+    .photo_aimerezaussi p,
+    .photo_newunephoto p {
+        font-size: 18px;
+    }
+
+    .divoeil img {
+        width: 46px;
+        height: 46px;
+        position: absolute;
+        top: 37%;
+        left: 39%;
+    }
+
+    .chargerplus {
+        margin-top: 10px;
+    }
+    .photo_newunephoto .fadedbox {
+        background-color: #000000;
+        position: absolute;
+        top: 0%;
+        left: 0;
+        color: #fff;
+        opacity: 0;
+        height: 53vw;
+        width: 54vw;
+}
+.photo_newunephoto{
+margin-top: 7%;
+}
+}
 /*  lightbox hover newunephoto */
 .photo_newunephoto {
     cursor: pointer;
@@ -656,16 +739,6 @@ footer {
     font-size: 21px;
 }
 
-.photo_newunephoto .fadedbox {
-    background-color: #000000;
-    position: absolute;
-    top: 0%;
-    left: 0;
-    color: #fff;
-    opacity: 0;
-    height: 29vw;
-    width: 29vw;
-}
 
 .photo_newunephoto:hover .fadedbox {
     opacity: 0.5;
@@ -771,16 +844,14 @@ footer {
     z-index: 12;
 }
 
-.lightbox__container img {
-    max-width: 100%;
-    height: auto;
-}
+
 
 .lightbox__container {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    align-items: flex-start;
     max-width: 90vh;
     max-height: 90vh;
     margin-left: 27%;
@@ -795,6 +866,162 @@ footer {
     top: 2%;
     left: 92%;
 }
+
 .lightbox__titredate p {
     color: #fff;
+}
+
+.lightbox__container .fleche {
+    position: absolute;
+    cursor: pointer;
+}
+
+.lightbox__container .fleche-gauche {
+    left: 24%;
+}
+
+.lightbox__container .fleche-droite {
+    right: 26%;
+}
+
+.lightbox__image {
+    max-width: 100%;
+    height: auto;
+}
+
+.lightbox__titredate p {}
+
+
+
+.lightbox__datecateg {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 10PX;
+}
+
+
+/* MENU BURGER */
+.navnewmenu {
+    position: relative;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: none;
+}
+
+.menuburger {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    background-color: red;
+}
+.contactburger{
+    border: none;
+    color: white;
+    background: red;
+    font-family: Space Mono;
+    font-size: 23px;
+    font-weight: 400;
+    line-height: 34px;
+    letter-spacing: 0em;
+    text-align: center;
+    text-transform: uppercase;
+    margin-left: -7%;
+}
+@media screen and (max-width: 800px) {
+    #menu-header {
+        display: none !important;
+    }
+
+    .buttonmenu {
+        width: 42px;
+        height: 24px;
+        cursor: pointer;
+        position: relative;
+    }
+
+    .buttonmenu span {
+        width: 100%;
+        height: 4px;
+        background-color: #000000;
+        display: block;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: backround-color 0.5s ease-in-out;
+    }
+
+    .buttonmenu span::before,
+    .buttonmenu span::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 4px;
+        background-color: #000000
+    }
+
+    .buttonmenu span::before {
+        transform: translateY(-10px);
+    }
+
+    .buttonmenu span::after {
+        transform: translateY(10px);
+    }
+
+    .activee span {
+        background-color: transparent;
+
+    }
+
+    .activee span::before {
+        transform: translateY(0px) rotateZ(45deg);
+    }
+
+    .activee span::after {
+        transform: translateY(0px) rotateZ(-45deg);
+    }
+
+    .open {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .backdrop {
+        /* position: absolute; */
+        top: -3215px;
+        left: -6312px;
+        right: 0;
+        bottom: 0;
+        background: red;
+        cursor: pointer;
+        animation: fade .1s;
+    }
+
+    .remove {
+        display: none !important;
+    }
+}
+
+.openburger {
+    display: block;
+
+}
+
+.newul {
+    text-decoration: none;
+    list-style-type: none;
+}
+
+.newul a {
+    color: white;
+    font-family: Space Mono;
+    font-size: 23px;
+    font-weight: 400;
+    line-height: 34px;
+    letter-spacing: 0em;
+    text-align: center;
+    text-transform: uppercase;
 }
