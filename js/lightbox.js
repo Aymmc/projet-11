@@ -10,7 +10,7 @@ $(document).ready(function() {
 
   // Lorsque l'un des boutons est cliqué
   buttonlightbox.forEach(function(button, index) {
-    button.addEventListener('click', function(e) {
+    button.addEventListener('click', function(e){
       e.preventDefault();
 
       // Récupérer l'URL, le titre et la date de l'image associée au bouton

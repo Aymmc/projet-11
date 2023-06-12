@@ -12,12 +12,12 @@ while (have_posts()):
                     class="fleche fleche-droite" alt="Flèche droite">
                 <div class="lightbox__titre">
                     <p class="lightbox__titre"> </p>
-</div>
-                    <div class="lightbox__datecateg">
-                        <p class="lightbox__date"> </p>
-                        <p class="lightbox__categ"> </p>
-                    </div>
+                </div>
+                <div class="lightbox__datecateg">
+                    <p class="lightbox__date"> </p>
+                    <p class="lightbox__categ"> </p>
                 </div>
             </div>
-        </article><!-- #post-<?php the_ID(); ?> -->
-    <?php endwhile; ?>
+    </div>
+    </article><!-- #post-<?php the_ID(); ?> -->
+<?php endwhile; ?>

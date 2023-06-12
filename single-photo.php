@@ -49,7 +49,7 @@ get_header() ?>
                 <div class="interesse">
                     <div class="btn_interesse">
                         <p> Cette photo vous intéresse ? </p>
-                        <button id="myBtn2" class="contact contact_interesse"> Contact</button>
+                        <button id="myBtn2" class="myBtn contact contact_interesse"> Contact</button>
                     </div>
                     <div class="photo_choix">
                         <div class="photo_avant">
