@@ -49,7 +49,7 @@ get_header() ?>
                 <div class="interesse">
                     <div class="btn_interesse">
                         <p> Cette photo vous intéresse ? </p>
-                        <button id="myBtn2" class="myBtn contact contact_interesse"> Contact</button>
+                        <button id="myBtn2" class="myBtn contact contact_interesse btnhover"> Contact </button>
                     </div>
                     <div class="photo_choix">
                         <div class="photo_avant">
@@ -76,7 +76,7 @@ get_header() ?>
             </section>
             <?php include_once "templates_parts/photo_block.php"; ?>
         <?php endwhile; ?>
-        <div class="btntoutephoto"> <a href="http://localhost/motaphoto/" class="btn btn_toutephoto"> Toutes les photos </a>
+        <div class="btntoutephoto"> <a href="http://localhost/motaphoto/" class="btn btn_toutephoto btnhover"> Toutes les photos </a>
                         </div>
     </main>
 </div>

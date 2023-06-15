@@ -1,4 +1,4 @@
-/* general  */
+/* --------------------------------------------General----------------------------------------------------------------------------------------  */
 body {
     margin: auto;
     padding: 0;
@@ -35,7 +35,7 @@ h2 {
 
 }
 
-/* Animation */
+/*-------------------------------------------------------------- Animation-------------------------------------------- */
 @keyframes bouton {
     0% {
         transform: translateX(0px);
@@ -47,7 +47,7 @@ h2 {
 }
 
 
-/* Menu Header */
+/* -------------------------------------------------------------- Menu Header--------------------------------------------------------------  */
 .menu_header {
     background-color: white;
     display: flex;
@@ -86,7 +86,7 @@ h2 {
     cursor: pointer;
 }
 
-/* Menu Footer */
+/*--------------------------------------------------------------  Menu Footer -------------------------------------------------------------- */
 .menu_header {
     background-color: white;
     display: flex;
@@ -136,7 +136,7 @@ footer {
 
 
 
-/* Overlay */
+/*--------------------------------------------------------------  Overlay -------------------------------------------------------------- */
 .modal {
     display: none;
     /* Hidden by default */
@@ -160,7 +160,7 @@ footer {
     /* Black w/ opacity */
 }
 
-/* Modal Content */
+/*-------------------------------------------------------------- Modal Content --------------------------------------------------------------*/
 .modal-content {
     width: 597px;
     /* Full width */
@@ -241,7 +241,7 @@ footer {
     background: url(Contact.png)
 }
 
-/* Single_photo */
+/*--------------------------------------------------------------Single_photo --------------------------------------------------------------*/
 
 .post_contant {
     display: flex;
@@ -294,19 +294,8 @@ footer {
 
 /* Interesse */
 
-#myBtn2 {
-    border-left: 4px black solid;
-    padding-left: 19px;
-    padding-top: 7px;
-    padding-bottom: 7px;
-    margin-left: 10px;
-    transition: border-left 0.5s ease
-}
 
-#myBtn2:hover {
-    border-left: 100% solid black;
-    /* Bordure de gauche pleinement remplie en noir */
-}
+
 
 .interesse {
     display: flex;
@@ -384,7 +373,7 @@ footer {
     padding-top: 12px;
 }
 
-/* Media Query single_photo */
+/*-------------------------------------------------------------- Media Query single_photo --------------------------------------------------------------*/
 @media screen and (max-width: 520px) {
     .post_contant {
         display: flex;
@@ -446,7 +435,7 @@ footer {
     }
 }
 
-/* Page accueil */
+/*-------------------------------------------------------------- Page accueil --------------------------------------------------------------*/
 .accueil_aleatoire_photo {
     height: 103vh;
 }
@@ -605,7 +594,7 @@ footer {
 }
 
 
-/* lightbox hover*/
+/*-------------------------------------------------------------- lightbox hover --------------------------------------------------------------*/
 
 .photo_unephoto {
     cursor: pointer;
@@ -631,6 +620,7 @@ footer {
 
 .photo_unephoto:hover .fadedbox {
     opacity: 0.5;
+    transition: 0.5s;
 }
 
 .photo_unephoto .title {
@@ -727,7 +717,7 @@ footer {
 margin-top: 7%;
 }
 }
-/*  lightbox hover newunephoto */
+/*--------------------------------------------------------------  lightbox hover newunephoto --------------------------------------------------------------*/
 .photo_newunephoto {
     cursor: pointer;
     position: relative;
@@ -742,6 +732,8 @@ margin-top: 7%;
 
 .photo_newunephoto:hover .fadedbox {
     opacity: 0.5;
+    transition: 0.5s;
+    
 }
 
 .photo_newunephoto .title {
@@ -793,6 +785,7 @@ margin-top: 7%;
 
 .photo_aimerezaussi:hover .fadedbox {
     opacity: 0.5;
+    transition: 0.5s;
 }
 
 .photo_aimerezaussi .title {
@@ -817,7 +810,7 @@ margin-top: 7%;
     justify-content: space-between;
 }
 
-/* Lightbox */
+/*-------------------------------------------------------------- Lightbox --------------------------------------------------------------*/
 
 .lightbox {
     position: fixed;
@@ -900,7 +893,7 @@ margin-top: 7%;
 }
 
 
-/* MENU BURGER */
+/*-------------------------------------------------------------- MENU BURGER --------------------------------------------------------------*/
 .navnewmenu {
     position: relative;
     top: 0;
@@ -1025,3 +1018,61 @@ margin-top: 7%;
     text-align: center;
     text-transform: uppercase;
 }
+
+/* -----------------------------------------Hover Button-------------------------------------------------------- */
+
+#load-more:hover {
+    background-color: #000;
+    transition: 0.3s;
+opacity: 1;
+z-index: 1;
+}
+.appareilphoto:hover{
+    opacity: 1;
+}
+
+.appareilphoto{
+    position: absolute;
+    opacity: 0;
+    z-index: 10000;
+    margin-left: -48px;
+}
+
+#load-more{
+position: relative;
+}
+
+ .btnhover {
+    background-color: transparent;
+    border: transparent;
+    font-family: 'space-mono';
+    font-size: 14px;
+    box-shadow: none;
+    padding: 0 15px;
+    cursor: pointer;
+    position: relative;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    transition: .5s all ease-in-out;
+  }
+  
+  .btnhover::before {
+    content: '';
+    position: absolute;
+    background: black;
+    width: 3px;
+    height: 38px;
+    left: 0;
+    transition: .2s all;
+    z-index: -1;
+  }
+  
+  .btnhover:hover::before {
+    width: 100%;
+  }
+  .btnhover:hover {
+    color: #ffffff;
+  }

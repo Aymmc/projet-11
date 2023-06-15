@@ -139,7 +139,8 @@ Template Name: Accueil
     ?>
 </div>
 <div class="chargerplus">
-    <a href="#!" class="btn btn_chargezplus" id="load-more"> Charger plus </a>
+    <a href="#!" class="btn btn_chargezplus" id="load-more"> Charger plus <img class="appareilphoto" src="wp-content\themes\motaphoto\asset\appareil_photo.png"></a>
+</div>
 
     </section>
     <?php get_footer() ?>
