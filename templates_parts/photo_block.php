@@ -52,7 +52,7 @@
                                         src="<?php echo get_stylesheet_directory_uri(); ?> '/asset/oeil.png' " alt="oeil"> </a>
                             </div>
                             <div class="divfullscreen">
-                            <button class="buttonlightbox" data-titre="<?php the_title(); ?>" data-date="<?php $post_date = get_the_date('Y');
+                            <button class="buttonlightbox buttonaimerezaussi" data-titre="<?php the_title(); ?>" data-date="<?php $post_date = get_the_date('Y');
                           echo $post_date; ?>" data-image="<?php echo esc_attr(get_the_post_thumbnail_url(get_the_ID())); ?>" data-categ="<?php
                                $categories = get_the_terms(get_the_ID(), 'categorie'); // Remplacez 'categorie' par le nom de votre taxonomie
                                if ($categories && !is_wp_error($categories)) {
@@ -66,7 +66,8 @@
                                    echo implode(', ', $category_names);
                                    // Concatène les noms des catégories avec une virgule comme séparateur
                                }
-                               ?>"><img src="wp-content\themes\motaphoto\asset\fullscreen.png"></button>
+                               ?>"><img class="fullscreen"
+                               src="<?php echo get_stylesheet_directory_uri(); ?> '/asset/fullscreen.png' " alt="fullscreen">"></button>
                             </div>
                         </div>
                     </div>

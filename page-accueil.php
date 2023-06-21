@@ -18,7 +18,7 @@ Template Name: Accueil
                 the_post(); ?>
                 <img src="<?php the_post_thumbnail_url(); ?>" alt="<?php the_title_attribute(); ?>" <?php endwhile;
         endif; ?>
-            </div>
+    </div>
 </section>
 <div class="filtre">
     <div class="filtre_taxo">
@@ -139,8 +139,9 @@ Template Name: Accueil
     ?>
 </div>
 <div class="chargerplus">
-    <a href="#!" class="btn btn_chargezplus" id="load-more"> Charger plus <img class="appareilphoto" src="wp-content\themes\motaphoto\asset\appareil_photo.png"></a>
+    <a href="#!" class="btn btn_chargezplus" id="load-more"> Charger plus <img class="appareilphoto"
+            src="wp-content\themes\motaphoto\asset\appareil_photo.png"></a>
 </div>
 
-    </section>
-    <?php get_footer() ?>
+</section>
+<?php get_footer() ?>
