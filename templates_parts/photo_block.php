@@ -7,6 +7,7 @@
     }, get_the_terms(get_post(), 'categorie'));
     $args = array(
         'post__not_in' => [get_the_ID()],
+        'order_by_rand' => 'rand',
         'post_type' => 'photo',
         'tax_query' => [
             [

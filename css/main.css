@@ -166,8 +166,8 @@ footer {
     /* Full width */
     height: 769px;
     background-color: #fefefe;
-    margin: auto;
-
+    margin: auto;   
+    z-index: 100;
     border: 5px solid #000000;
 }
 
@@ -427,38 +427,51 @@ footer {
         width: 75vw;
         margin-top: 5%;
     }
+
     .post_description a {
         text-decoration: none;
         font-size: 15px;
     }
-    .photo_aimerezaussi{
+
+    .photo_aimerezaussi {
         margin-bottom: 4%;
     }
-    .post_description{
+
+    .post_description {
         margin-right: 23%;
     }
-    .section_aimerezaussi h2{
+
+    .section_aimerezaussi h2 {
         text-align: center;
 
     }
+
     .btn_interesse button {
         margin-right: 45%;
     }
-    .accueil_aleatoire{
+
+    .accueil_aleatoire {
         margin-top: 2%;
     }
 }
 
 
-/*-------------------------------------------------------------- Page accueil --------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------- Page accueil ----------------------------------------------------------------------------*/
 .accueil_aleatoire_photo {
     height: 103vh;
 }
 
-.accueil_aleatoire img {
+.photoaleatoire {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.photoevent {
+    
+    position: absolute;
+    left: 23%;
+    bottom: 36%;
 }
 
 .photo_filtre {}
@@ -475,7 +488,7 @@ footer {
     object-fit: cover;
     width: 100%;
     height: 100%;
-    
+
 }
 
 .photo_unephoto img {
@@ -514,6 +527,44 @@ footer {
     justify-content: center;
 }
 
+@media screen and (max-width: 1300px) {
+    .photoevent {
+  
+        position: absolute;
+        left: 15%;
+        bottom: 35%;
+
+    }
+
+
+}
+
+@media screen and (max-width: 1100px) {
+    .photoevent {
+ 
+        position: absolute;
+        left: 23%;
+        bottom: 35%;
+        width: 700px;
+        height: 100px;
+    }
+
+
+}
+
+@media screen and (max-width: 900px) {
+    .photoevent {
+
+        position: absolute;
+        left: 13%;
+        bottom: 35%;
+        width: 700px;
+        height: 100px;
+    }
+
+
+}
+
 @media screen and (max-width: 800px) {
     .accueil_aleatoire_photo {
         height: 50vh;
@@ -532,8 +583,70 @@ footer {
         gap: 10px;
         margin: 0px 0px;
     }
+
+    .photoevent {
+
+        position: absolute;
+        left: 23%;
+        bottom: 66%;
+        width: 500px;
+        height: 71px;
+    }
 }
 
+
+
+
+@media screen and (max-width: 700px) {
+    .photoevent {
+
+
+        position: absolute;
+        left: 16%;
+        bottom: 66%;
+        width: 500px;
+        height: 71px;
+    }
+
+
+}
+
+@media screen and (max-width: 550px) {
+    .photoevent {
+
+        position: absolute;
+        left: 11%;
+        bottom: 68%;
+        width: 400px;
+        height: 50px;
+    }
+
+
+}
+@media screen and (max-width: 450px) {
+    .photoevent {
+
+        position: absolute;
+        left: 2%;
+        bottom: 68%;
+        width: 400px;
+        height: 50px;
+    }
+
+
+}
+@media screen and (max-width: 400px) {
+    .photoevent {
+
+        position: absolute;
+        left: 2%;
+        bottom: 68%;
+        width: 350px;
+        height: 50px;
+    }
+
+
+}
 /* Filtre */
 .filtre label {
     font-family: Poppins;
@@ -719,6 +832,7 @@ footer {
     .chargerplus {
         margin-top: 10px;
     }
+
     .photo_newunephoto .fadedbox {
         background-color: #000000;
         position: absolute;
@@ -728,11 +842,13 @@ footer {
         opacity: 0;
         height: 53vw;
         width: 54vw;
+    }
+
+    .photo_newunephoto {
+        margin-top: 7%;
+    }
 }
-.photo_newunephoto{
-margin-top: 7%;
-}
-}
+
 /*--------------------------------------------------------------  lightbox hover newunephoto --------------------------------------------------------------*/
 .photo_newunephoto {
     cursor: pointer;
@@ -744,6 +860,7 @@ margin-top: 7%;
     color: #FFFFFF;
     font-size: 21px;
 }
+
 .photo_newunephoto .fadedbox {
     background-color: #000000;
     position: absolute;
@@ -759,7 +876,7 @@ margin-top: 7%;
 .photo_newunephoto:hover .fadedbox {
     opacity: 0.5;
     transition: 0.5s;
-    
+
 }
 
 .photo_newunephoto .title {
@@ -805,7 +922,7 @@ margin-top: 7%;
     color: #fff;
     opacity: 0;
     height: 37vw;
-    width: 34vw;
+    width: 100%;
 }
 
 .photo_aimerezaussi:hover .fadedbox {
@@ -935,7 +1052,8 @@ margin-top: 7%;
     background-color: red;
     margin-top: 2%;
 }
-.contactburger{
+
+.contactburger {
     border: none;
     color: white;
     background: red;
@@ -948,6 +1066,7 @@ margin-top: 7%;
     text-transform: uppercase;
     margin-left: -7%;
 }
+
 @media screen and (max-width: 800px) {
     #menu-header {
         display: none !important;
@@ -1022,7 +1141,8 @@ margin-top: 7%;
     .remove {
         display: none !important;
     }
-    .btnhover{
+
+    .btnhover {
         margin-top: 1%;
         margin-bottom: 5%;
     }
@@ -1054,25 +1174,26 @@ margin-top: 7%;
 #load-more:hover {
     background-color: #000;
     transition: 0.3s;
-opacity: 1;
-z-index: 1;
+    opacity: 1;
+    z-index: 1;
 }
-.appareilphoto:hover{
+
+.appareilphoto:hover {
     opacity: 1;
 }
 
-.appareilphoto{
+.appareilphoto {
     position: absolute;
     opacity: 0;
     z-index: 10000;
     margin-left: -48px;
 }
 
-#load-more{
-position: relative;
+#load-more {
+    position: relative;
 }
 
- .btnhover {
+.btnhover {
     background-color: transparent;
     border: transparent;
     font-family: 'space-mono';
@@ -1081,15 +1202,15 @@ position: relative;
     padding: 0 15px;
     cursor: pointer;
     position: relative;
-  
+
     display: flex;
     justify-content: center;
     align-items: center;
-  
+
     transition: .5s all ease-in-out;
-  }
-  
-  .btnhover::before {
+}
+
+.btnhover::before {
     content: '';
     position: absolute;
     background: black;
@@ -1098,23 +1219,16 @@ position: relative;
     left: 0;
     transition: .2s all;
     z-index: -1;
-  }
-  
-  .btnhover:hover::before {
+}
+
+.btnhover:hover::before {
     width: 100%;
-  }
-  .btnhover:hover {
+}
+
+.btnhover:hover {
     color: #ffffff;
-  }
-
-
-
-
-
-
-
-
-  .post_image {
+}
+.post_image {
     cursor: pointer;
     position: relative;
     overflow: hidden;
@@ -1129,11 +1243,11 @@ position: relative;
     background-color: #000000;
     position: absolute;
     top: 0%;
-    left: 0;
+    left: 0%;
     color: #fff;
     opacity: 0;
     height: 50vw;
-    width: 30vw;
+    width: 100%;
 }
 
 .post_image:hover .fadedbox {

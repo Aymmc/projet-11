@@ -25,7 +25,7 @@
         <div class ="headermenu">
         <div class="menu_header">
             
-        <a href="<?php echo site_url() ?>"><img src="<?php echo get_stylesheet_directory_uri(); ?> '/asset/logo.png' " alt="logo"> </a>
+        <a href="<?php echo site_url() ?>"><img src="<?php echo get_template_directory_uri(); ?> '/asset/logo.png' " alt="logo"> </a>
         <div class="buttonmenu">
             <span></span>
           </div>

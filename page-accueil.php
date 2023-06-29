@@ -16,8 +16,9 @@ Template Name: Accueil
         <?php if (have_posts()):
             while (have_posts()):
                 the_post(); ?>
-                <img src="<?php the_post_thumbnail_url(); ?>" alt="<?php the_title_attribute(); ?>" <?php endwhile;
-        endif; ?>
+                <img class="photoaleatoire"src="<?php the_post_thumbnail_url(); ?>" alt="<?php the_title_attribute(); ?>" <?php endwhile;
+        endif; ?>>
+        <img class="photoevent" src="<?php echo get_stylesheet_directory_uri(); ?> '/asset/photoevent.png' " alt="photoevent">
     </div>
 </section>
 <div class="filtre">

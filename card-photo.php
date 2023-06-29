@@ -68,7 +68,8 @@ $query = new WP_Query($args);
 <?php endif;
 wp_reset_query();
 ?>
- <script> $(document).ready(function() {
+ <script> 
+ $(document).ready(function() {
   // Sélectionner l'élément de la lightbox
   var lightbox = document.querySelector('.lightbox');
 
