@@ -188,7 +188,7 @@ function filter_post()
         ob_start(); // Démarre la mise en mémoire tampon
 
         // Boucle while pour parcourir les publications
-        while ($ajaxfilter->have_posts()) {
+        while ($ajaxfilter->have_posts()) :
             $ajaxfilter->the_post();
             // Affiche le code HTML de chaque publication
             ?>
@@ -235,10 +235,13 @@ function filter_post()
                                ?>"><img src="wp-content\themes\motaphoto\asset\fullscreen.png"></button>
                     </div>
                             </div>
-                        </div>
+                        </div>   
                     <?php endif; ?>
+                    
                 </div>
             </div>
+
+
 
 
 
@@ -326,7 +329,7 @@ function filter_post()
 
             </script>
             <?php
-        }
+        endwhile;
 
         wp_reset_query(); // Réinitialise la requête
         wp_reset_postdata(); // Réinitialise les données de publication
@@ -342,6 +345,24 @@ function filter_post()
 
 add_action('wp_ajax_filter_post', 'filter_post');
 add_action('wp_ajax_nopriv_filter_post', 'filter_post');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Recupere date 
 function get_unique_post_dates()
