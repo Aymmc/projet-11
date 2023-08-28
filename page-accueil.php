@@ -18,7 +18,7 @@ Template Name: Accueil
                 the_post(); ?>
                 <img class="photoaleatoire"src="<?php the_post_thumbnail_url(); ?>" alt="<?php the_title_attribute(); ?>" <?php endwhile;
         endif; ?>>
-        <img class="photoevent" src="<?php echo get_stylesheet_directory_uri(); ?> '/asset/photoevent.png' " alt="photoevent">
+        <img class="photoevent" src="<?php echo get_template_directory_uri(); ?> '/asset/photoevent.png' " alt="photoevent">
     </div>
 </section>
 <div class="filtre">

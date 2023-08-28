@@ -188,7 +188,7 @@ function filter_post()
         ob_start(); // Démarre la mise en mémoire tampon
 
         // Boucle while pour parcourir les publications
-        while ($ajaxfilter->have_posts()) :
+        while ($ajaxfilter->have_posts()):
             $ajaxfilter->the_post();
             // Affiche le code HTML de chaque publication
             ?>
@@ -200,6 +200,9 @@ function filter_post()
                     <?php the_content(); ?>
                     <?php if (has_post_thumbnail()): ?>
                         <?php the_post_thumbnail(); ?>
+
+
+                        
                         <div class="fadedbox">
                             <div class="title text">
                                 <div class="titre">
@@ -213,32 +216,39 @@ function filter_post()
                                     </p>
                                 </div>
                             </div>
+
+
+
                             <div class="divoeil">
                                 <a href="<?php the_permalink(); ?>"><img
                                         src="<?php echo get_stylesheet_directory_uri(); ?>/asset/oeil.png" alt="oeil"></a>
                             </div>
+
+
+
                             <div class="divfullscreen">
-                            <button class="buttonlightbox" data-titre="<?php the_title(); ?>" data-date="<?php $post_date = get_the_date('Y');
-                          echo $post_date; ?>" data-image="<?php echo esc_attr(get_the_post_thumbnail_url(get_the_ID())); ?>" data-categ="<?php
-                               $categories = get_the_terms(get_the_ID(), 'categorie'); // Remplacez 'categorie' par le nom de votre taxonomie
-                               if ($categories && !is_wp_error($categories)) {
-                                   // Vérifie si la variable $categories existe et n'est pas une erreur de WordPress
-                                   $category_names = array(); // Crée un tableau vide pour stocker les noms des catégories
-                                   foreach ($categories as $category) {
-                                       // Parcourt chaque terme de taxonomie dans $categories
-                                       $category_names[] = $category->name;
-                                       // Ajoute le nom de la catégorie courante au tableau $category_names
-                                   }
-                                   echo implode(', ', $category_names);
-                                   // Concatène les noms des catégories avec une virgule comme séparateur
-                               }
-                               ?>"><img src="wp-content\themes\motaphoto\asset\fullscreen.png"></button>
-                    </div>
+                                <button class="buttonlightbox" data-titre="<?php the_title(); ?>" data-date="<?php $post_date = get_the_date('Y');
+                                  echo $post_date; ?>"
+                                    data-image="<?php echo esc_attr(get_the_post_thumbnail_url(get_the_ID())); ?>" data-categ="<?php
+                                       $categories = get_the_terms(get_the_ID(), 'categorie'); // Remplacez 'categorie' par le nom de votre taxonomie
+                                       if ($categories && !is_wp_error($categories)) {
+                                           // Vérifie si la variable $categories existe et n'est pas une erreur de WordPress
+                                           $category_names = array(); // Crée un tableau vide pour stocker les noms des catégories
+                                           foreach ($categories as $category) {
+                                               // Parcourt chaque terme de taxonomie dans $categories
+                                               $category_names[] = $category->name;
+                                               // Ajoute le nom de la catégorie courante au tableau $category_names
+                                           }
+                                           echo implode(', ', $category_names);
+                                           // Concatène les noms des catégories avec une virgule comme séparateur
+                                       }
+                                       ?>"><img src="wp-content\themes\motaphoto\asset\fullscreen.png"></button>
                             </div>
-                        </div>   
-                    <?php endif; ?>
-                    
-                </div>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
+            </div>
             </div>
 
 
@@ -246,86 +256,86 @@ function filter_post()
 
 
 
-            <script> $(document).ready(function() {
-  // Sélectionner l'élément de la lightbox
-  var lightbox = document.querySelector('.lightbox');
+            <script> $(document).ready(function () {
+                    // Sélectionner l'élément de la lightbox
+                    var lightbox = document.querySelector('.lightbox');
 
-  // Sélectionner le bouton de fermeture de la lightbox
-  var spanlightbox = document.querySelector('.lightbox__close');
+                    // Sélectionner le bouton de fermeture de la lightbox
+                    var spanlightbox = document.querySelector('.lightbox__close');
 
-  // Sélectionner tous les boutons qui ouvrent la lightbox
-  var buttonlightbox = document.querySelectorAll('.buttonlightbox');
+                    // Sélectionner tous les boutons qui ouvrent la lightbox
+                    var buttonlightbox = document.querySelectorAll('.buttonlightbox');
 
-  // Lorsque l'un des boutons est cliqué
-  buttonlightbox.forEach(function(button, index) {
-    button.addEventListener('click', function(e) {
-      e.preventDefault();
+                    // Lorsque l'un des boutons est cliqué
+                    buttonlightbox.forEach(function (button, index) {
+                        button.addEventListener('click', function (e) {
+                            e.preventDefault();
 
-      // Récupérer l'URL, le titre et la date de l'image associée au bouton
-      var imageSrc = button.getAttribute('data-image');
-      var imageTitre = button.getAttribute('data-titre');
-      var imageDate = button.getAttribute('data-date');
-      var imagecateg = button.getAttribute('data-categ');
-      // Sélectionner l'élément de l'image dans la lightbox
-      var lightboxImage = lightbox.querySelector('.lightbox__image');
-      var lightboxTitre = lightbox.querySelector('.lightbox__titre');
-      var lightboxDate = lightbox.querySelector('.lightbox__date');
-      var lightboxcateg = lightbox.querySelector('.lightbox__categ');
+                            // Récupérer l'URL, le titre et la date de l'image associée au bouton
+                            let imageSrc = button.getAttribute('data-image');
+                            let imageTitre = button.getAttribute('data-titre');
+                            let imageDate = button.getAttribute('data-date');
+                            let imagecateg = button.getAttribute('data-categ');
+                            // Sélectionner l'élément de l'image dans la lightbox
+                            let lightboxImage = lightbox.querySelector('.lightbox__image');
+                            let lightboxTitre = lightbox.querySelector('.lightbox__titre');
+                            let lightboxDate = lightbox.querySelector('.lightbox__date');
+                            let lightboxcateg = lightbox.querySelector('.lightbox__categ');
 
-      // Définir la source de l'image avec l'URL récupérée
-      lightboxImage.setAttribute('src', imageSrc);
+                            // Définir la source de l'image avec l'URL récupérée
+                            lightboxImage.setAttribute('src', imageSrc);
 
-      // Définir le titre et la date de l'image dans la lightbox
-      lightboxTitre.textContent = imageTitre;
-      lightboxDate.textContent = imageDate;
-      lightboxcateg.textContent = imagecateg;
+                            // Définir le titre et la date de l'image dans la lightbox
+                            lightboxTitre.textContent = imageTitre;
+                            lightboxDate.textContent = imageDate;
+                            lightboxcateg.textContent = imagecateg;
 
-      // Afficher la lightbox
-      lightbox.style.display = 'block';
+                            // Afficher la lightbox
+                            lightbox.style.display = 'block';
 
-      // Enregistrer l'index du bouton cliqué pour la navigation
-      lightbox.setAttribute('data-current-index', index);
-    });
-  });
+                            // Enregistrer l'index du bouton cliqué pour la navigation
+                            lightbox.setAttribute('data-current-index', index);
+                        });
+                    });
 
-  // Lorsque le bouton de fermeture est cliqué
-  spanlightbox.onclick = function() {
-    // Cacher la lightbox
-    lightbox.style.display = 'none';
-  };
+                    // Lorsque le bouton de fermeture est cliqué
+                    spanlightbox.onclick = function () {
+                        // Cacher la lightbox
+                        lightbox.style.display = 'none';
+                    };
 
-  // Lorsque l'utilisateur clique en dehors de la lightbox
-  window.onclick = function(event) {
-    // Si l'élément cliqué est la lightbox elle-même
-    if (event.target == lightbox) {
-      // Cacher la lightbox
-      lightbox.style.display = 'none';
-    }
-  };
+                    // Lorsque l'utilisateur clique en dehors de la lightbox
+                    window.onclick = function (event) {
+                        // Si l'élément cliqué est la lightbox elle-même
+                        if (event.target == lightbox) {
+                            // Cacher la lightbox
+                            lightbox.style.display = 'none';
+                        }
+                    };
 
-  // Lorsque les flèches gauche et droite sont cliquées
-  lightbox.querySelector('.fleche-gauche').addEventListener('click', function(e) {
-    e.stopPropagation(); // Empêche la propagation de l'événement pour éviter la fermeture de la lightbox
-    // parseInt permet de recuperer une chaine de caractères en entier 
-    var currentIndex = parseInt(lightbox.getAttribute('data-current-index'));
-    var previousButton = buttonlightbox[currentIndex - 1];
-    if (previousButton) {
-      previousButton.click();
-      lightbox.setAttribute('data-current-index', currentIndex - 1);
-    }
-  });
+                    // Lorsque les flèches gauche et droite sont cliquées
+                    lightbox.querySelector('.fleche-gauche').addEventListener('click', function (e) {
+                        e.stopPropagation(); // Empêche la propagation de l'événement pour éviter la fermeture de la lightbox
+                        // parseInt permet de recuperer une chaine de caractères en entier 
+                        var currentIndex = parseInt(lightbox.getAttribute('data-current-index'));
+                        var previousButton = buttonlightbox[currentIndex - 1];
+                        if (previousButton) {
+                            previousButton.click();
+                            lightbox.setAttribute('data-current-index', currentIndex - 1);
+                        }
+                    });
 
-  lightbox.querySelector('.fleche-droite').addEventListener('click', function(e) {
-    e.stopPropagation(); // Empêche la propagation de l'événement pour éviter la fermeture de la lightbox
+                    lightbox.querySelector('.fleche-droite').addEventListener('click', function (e) {
+                        e.stopPropagation(); // Empêche la propagation de l'événement pour éviter la fermeture de la lightbox
 
-    var currentIndex = parseInt(lightbox.getAttribute('data-current-index'));
-    var nextButton = buttonlightbox[currentIndex + 1];
-    if (nextButton) {
-      nextButton.click();
-      lightbox.setAttribute('data-current-index', currentIndex + 1);
-    }
-  });
-});
+                        var currentIndex = parseInt(lightbox.getAttribute('data-current-index'));
+                        var nextButton = buttonlightbox[currentIndex + 1];
+                        if (nextButton) {
+                            nextButton.click();
+                            lightbox.setAttribute('data-current-index', currentIndex + 1);
+                        }
+                    });
+                });
 
             </script>
             <?php
